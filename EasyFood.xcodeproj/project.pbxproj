@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CBCE32BA2BDB3BFF00B15EEF /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE32B92BDB3BFF00B15EEF /* LogInViewController.swift */; };
 		CBDD9EA22BA7EA14001AFC33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDD9EA12BA7EA14001AFC33 /* AppDelegate.swift */; };
 		CBDD9EA42BA7EA14001AFC33 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDD9EA32BA7EA14001AFC33 /* SceneDelegate.swift */; };
 		CBDD9EA62BA7EA14001AFC33 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDD9EA52BA7EA14001AFC33 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CBCE32B92BDB3BFF00B15EEF /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		CBDD9E9E2BA7EA14001AFC33 /* EasyFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBDD9EA12BA7EA14001AFC33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBDD9EA32BA7EA14001AFC33 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 		CBDD9EA02BA7EA14001AFC33 /* EasyFood */ = {
 			isa = PBXGroup;
 			children = (
+				CBCE32B92BDB3BFF00B15EEF /* LogInViewController.swift */,
 				CBDD9EA12BA7EA14001AFC33 /* AppDelegate.swift */,
 				CBDD9EA32BA7EA14001AFC33 /* SceneDelegate.swift */,
 				CBDD9EA52BA7EA14001AFC33 /* ViewController.swift */,
@@ -144,6 +147,7 @@
 				CBDD9EA62BA7EA14001AFC33 /* ViewController.swift in Sources */,
 				CBDD9EA22BA7EA14001AFC33 /* AppDelegate.swift in Sources */,
 				CBDD9EA42BA7EA14001AFC33 /* SceneDelegate.swift in Sources */,
+				CBCE32BA2BDB3BFF00B15EEF /* LogInViewController.swift in Sources */,
 				CBDD9EAC2BA7EA14001AFC33 /* EasyFood.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
