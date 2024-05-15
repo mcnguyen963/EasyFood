@@ -7,11 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB300AC52BF458DC001B6A72 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB300AC42BF458DC001B6A72 /* HomeViewController.swift */; };
+		CB300AC72BF45A38001B6A72 /* HomepageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB300AC62BF45A38001B6A72 /* HomepageCollectionViewCell.swift */; };
+		CB34B0972BDB58CD0059A17E /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34B0962BDB58CD0059A17E /* FirebaseController.swift */; };
+		CB34B0992BDB59110059A17E /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34B0982BDB59110059A17E /* DatabaseProtocol.swift */; };
+		CB34B09B2BDB5AA90059A17E /* MulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34B09A2BDB5AA90059A17E /* MulticastDelegate.swift */; };
+		CB7F25F42BED8AD200700F35 /* RecipeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F25F32BED8AD200700F35 /* RecipeData.swift */; };
+		CB7F25F62BED8AF900700F35 /* CookingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F25F52BED8AF900700F35 /* CookingData.swift */; };
+		CB7F25F82BED8DA100700F35 /* IngredientData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F25F72BED8DA100700F35 /* IngredientData.swift */; };
+		CB7F25FC2BEDA4C400700F35 /* ShortRecipeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F25FB2BEDA4C400700F35 /* ShortRecipeData.swift */; };
+		CB7F26002BEF1E3600700F35 /* TestingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F25FF2BEF1E3600700F35 /* TestingCollectionViewCell.swift */; };
+		CB7F26022BEF1EBE00700F35 /* TestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F26012BEF1EBE00700F35 /* TestingViewController.swift */; };
+		CB7F26042BF0484300700F35 /* DetailRecipeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F26032BF0484300700F35 /* DetailRecipeData.swift */; };
+		CB7F26062BF04BCA00700F35 /* analyzedInstructionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F26052BF04BCA00700F35 /* analyzedInstructionData.swift */; };
+		CB8234E72BE4B66500465B31 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8234E62BE4B66500465B31 /* MainViewController.swift */; };
 		CBCE32BA2BDB3BFF00B15EEF /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE32B92BDB3BFF00B15EEF /* LogInViewController.swift */; };
 		CBCE32BD2BDB3F1600B15EEF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CBCE32BC2BDB3F1600B15EEF /* FirebaseAuth */; };
 		CBCE32BF2BDB3F1600B15EEF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CBCE32BE2BDB3F1600B15EEF /* FirebaseFirestore */; };
 		CBCE32C12BDB3F1600B15EEF /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CBCE32C02BDB3F1600B15EEF /* FirebaseFirestoreSwift */; };
 		CBCE32C32BDB412600B15EEF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBCE32C22BDB412600B15EEF /* GoogleService-Info.plist */; };
+		CBCE32C52BDB546800B15EEF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE32C42BDB546800B15EEF /* RegisterViewController.swift */; };
 		CBDD9EA22BA7EA14001AFC33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDD9EA12BA7EA14001AFC33 /* AppDelegate.swift */; };
 		CBDD9EA42BA7EA14001AFC33 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDD9EA32BA7EA14001AFC33 /* SceneDelegate.swift */; };
 		CBDD9EA62BA7EA14001AFC33 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDD9EA52BA7EA14001AFC33 /* ViewController.swift */; };
@@ -22,8 +37,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CB300AC42BF458DC001B6A72 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		CB300AC62BF45A38001B6A72 /* HomepageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageCollectionViewCell.swift; sourceTree = "<group>"; };
+		CB34B0962BDB58CD0059A17E /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
+		CB34B0982BDB59110059A17E /* DatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
+		CB34B09A2BDB5AA90059A17E /* MulticastDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulticastDelegate.swift; sourceTree = "<group>"; };
+		CB7F25F32BED8AD200700F35 /* RecipeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeData.swift; sourceTree = "<group>"; };
+		CB7F25F52BED8AF900700F35 /* CookingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingData.swift; sourceTree = "<group>"; };
+		CB7F25F72BED8DA100700F35 /* IngredientData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientData.swift; sourceTree = "<group>"; };
+		CB7F25FB2BEDA4C400700F35 /* ShortRecipeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortRecipeData.swift; sourceTree = "<group>"; };
+		CB7F25FF2BEF1E3600700F35 /* TestingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingCollectionViewCell.swift; sourceTree = "<group>"; };
+		CB7F26012BEF1EBE00700F35 /* TestingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingViewController.swift; sourceTree = "<group>"; };
+		CB7F26032BF0484300700F35 /* DetailRecipeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecipeData.swift; sourceTree = "<group>"; };
+		CB7F26052BF04BCA00700F35 /* analyzedInstructionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = analyzedInstructionData.swift; sourceTree = "<group>"; };
+		CB8234E62BE4B66500465B31 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		CBCE32B92BDB3BFF00B15EEF /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		CBCE32C22BDB412600B15EEF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CBCE32C42BDB546800B15EEF /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		CBDD9E9E2BA7EA14001AFC33 /* EasyFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBDD9EA12BA7EA14001AFC33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBDD9EA32BA7EA14001AFC33 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +79,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CB300AC32BF458BB001B6A72 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CB300AC42BF458DC001B6A72 /* HomeViewController.swift */,
+				CB300AC62BF45A38001B6A72 /* HomepageCollectionViewCell.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CB34B0952BDB58A70059A17E /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				CB34B0962BDB58CD0059A17E /* FirebaseController.swift */,
+				CB34B0982BDB59110059A17E /* DatabaseProtocol.swift */,
+				CB34B09A2BDB5AA90059A17E /* MulticastDelegate.swift */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
+		CB7F25F22BED8ABF00700F35 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CB7F25F32BED8AD200700F35 /* RecipeData.swift */,
+				CB7F25F52BED8AF900700F35 /* CookingData.swift */,
+				CB7F25F72BED8DA100700F35 /* IngredientData.swift */,
+				CB7F25FB2BEDA4C400700F35 /* ShortRecipeData.swift */,
+				CB7F25FF2BEF1E3600700F35 /* TestingCollectionViewCell.swift */,
+				CB7F26032BF0484300700F35 /* DetailRecipeData.swift */,
+				CB7F26012BEF1EBE00700F35 /* TestingViewController.swift */,
+				CB7F26052BF04BCA00700F35 /* analyzedInstructionData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		CBDD9E952BA7EA14001AFC33 = {
 			isa = PBXGroup;
 			children = (
@@ -70,14 +134,19 @@
 			children = (
 				CBCE32B92BDB3BFF00B15EEF /* LogInViewController.swift */,
 				CBDD9EA12BA7EA14001AFC33 /* AppDelegate.swift */,
+				CB8234E62BE4B66500465B31 /* MainViewController.swift */,
 				CBDD9EA32BA7EA14001AFC33 /* SceneDelegate.swift */,
+				CB34B0952BDB58A70059A17E /* DataBase */,
 				CBDD9EA52BA7EA14001AFC33 /* ViewController.swift */,
 				CBDD9EA72BA7EA14001AFC33 /* Main.storyboard */,
 				CBDD9EAD2BA7EA16001AFC33 /* Assets.xcassets */,
 				CBDD9EAF2BA7EA16001AFC33 /* LaunchScreen.storyboard */,
 				CBDD9EB22BA7EA16001AFC33 /* Info.plist */,
 				CBDD9EAA2BA7EA14001AFC33 /* EasyFood.xcdatamodeld */,
+				CBCE32C42BDB546800B15EEF /* RegisterViewController.swift */,
+				CB300AC32BF458BB001B6A72 /* ViewControllers */,
 				CBCE32C22BDB412600B15EEF /* GoogleService-Info.plist */,
+				CB7F25F22BED8ABF00700F35 /* Models */,
 			);
 			path = EasyFood;
 			sourceTree = "<group>";
@@ -162,11 +231,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB7F26002BEF1E3600700F35 /* TestingCollectionViewCell.swift in Sources */,
+				CB7F25F62BED8AF900700F35 /* CookingData.swift in Sources */,
+				CB34B0992BDB59110059A17E /* DatabaseProtocol.swift in Sources */,
+				CB7F26022BEF1EBE00700F35 /* TestingViewController.swift in Sources */,
+				CB300AC72BF45A38001B6A72 /* HomepageCollectionViewCell.swift in Sources */,
+				CB7F25FC2BEDA4C400700F35 /* ShortRecipeData.swift in Sources */,
+				CB8234E72BE4B66500465B31 /* MainViewController.swift in Sources */,
 				CBDD9EA62BA7EA14001AFC33 /* ViewController.swift in Sources */,
+				CB7F25F82BED8DA100700F35 /* IngredientData.swift in Sources */,
+				CB34B0972BDB58CD0059A17E /* FirebaseController.swift in Sources */,
 				CBDD9EA22BA7EA14001AFC33 /* AppDelegate.swift in Sources */,
 				CBDD9EA42BA7EA14001AFC33 /* SceneDelegate.swift in Sources */,
+				CB7F26042BF0484300700F35 /* DetailRecipeData.swift in Sources */,
+				CBCE32C52BDB546800B15EEF /* RegisterViewController.swift in Sources */,
 				CBCE32BA2BDB3BFF00B15EEF /* LogInViewController.swift in Sources */,
+				CB300AC52BF458DC001B6A72 /* HomeViewController.swift in Sources */,
+				CB7F26062BF04BCA00700F35 /* analyzedInstructionData.swift in Sources */,
+				CB7F25F42BED8AD200700F35 /* RecipeData.swift in Sources */,
 				CBDD9EAC2BA7EA14001AFC33 /* EasyFood.xcdatamodeld in Sources */,
+				CB34B09B2BDB5AA90059A17E /* MulticastDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
