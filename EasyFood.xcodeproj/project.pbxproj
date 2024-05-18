@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		CB300AC52BF458DC001B6A72 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB300AC42BF458DC001B6A72 /* HomeViewController.swift */; };
 		CB300AC72BF45A38001B6A72 /* HomepageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB300AC62BF45A38001B6A72 /* HomepageCollectionViewCell.swift */; };
+		CB300ACA2BF46692001B6A72 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB300AC92BF46692001B6A72 /* SearchViewController.swift */; };
+		CB300ACC2BF46728001B6A72 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB300ACB2BF46728001B6A72 /* SearchCollectionViewCell.swift */; };
+		CB300ACF2BF63CA2001B6A72 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB300ACE2BF63CA2001B6A72 /* DetailViewController.swift */; };
 		CB34B0972BDB58CD0059A17E /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34B0962BDB58CD0059A17E /* FirebaseController.swift */; };
 		CB34B0992BDB59110059A17E /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34B0982BDB59110059A17E /* DatabaseProtocol.swift */; };
 		CB34B09B2BDB5AA90059A17E /* MulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34B09A2BDB5AA90059A17E /* MulticastDelegate.swift */; };
@@ -39,6 +42,9 @@
 /* Begin PBXFileReference section */
 		CB300AC42BF458DC001B6A72 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CB300AC62BF45A38001B6A72 /* HomepageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageCollectionViewCell.swift; sourceTree = "<group>"; };
+		CB300AC92BF46692001B6A72 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		CB300ACB2BF46728001B6A72 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		CB300ACE2BF63CA2001B6A72 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		CB34B0962BDB58CD0059A17E /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		CB34B0982BDB59110059A17E /* DatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
 		CB34B09A2BDB5AA90059A17E /* MulticastDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulticastDelegate.swift; sourceTree = "<group>"; };
@@ -82,10 +88,29 @@
 		CB300AC32BF458BB001B6A72 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CB300ACD2BF63C7A001B6A72 /* Detail */,
+				CB300AC82BF46671001B6A72 /* Search */,
 				CB300AC42BF458DC001B6A72 /* HomeViewController.swift */,
 				CB300AC62BF45A38001B6A72 /* HomepageCollectionViewCell.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CB300AC82BF46671001B6A72 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				CB300AC92BF46692001B6A72 /* SearchViewController.swift */,
+				CB300ACB2BF46728001B6A72 /* SearchCollectionViewCell.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		CB300ACD2BF63C7A001B6A72 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				CB300ACE2BF63CA2001B6A72 /* DetailViewController.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		CB34B0952BDB58A70059A17E /* DataBase */ = {
@@ -233,6 +258,8 @@
 			files = (
 				CB7F26002BEF1E3600700F35 /* TestingCollectionViewCell.swift in Sources */,
 				CB7F25F62BED8AF900700F35 /* CookingData.swift in Sources */,
+				CB300ACF2BF63CA2001B6A72 /* DetailViewController.swift in Sources */,
+				CB300ACC2BF46728001B6A72 /* SearchCollectionViewCell.swift in Sources */,
 				CB34B0992BDB59110059A17E /* DatabaseProtocol.swift in Sources */,
 				CB7F26022BEF1EBE00700F35 /* TestingViewController.swift in Sources */,
 				CB300AC72BF45A38001B6A72 /* HomepageCollectionViewCell.swift in Sources */,
@@ -246,6 +273,7 @@
 				CB7F26042BF0484300700F35 /* DetailRecipeData.swift in Sources */,
 				CBCE32C52BDB546800B15EEF /* RegisterViewController.swift in Sources */,
 				CBCE32BA2BDB3BFF00B15EEF /* LogInViewController.swift in Sources */,
+				CB300ACA2BF46692001B6A72 /* SearchViewController.swift in Sources */,
 				CB300AC52BF458DC001B6A72 /* HomeViewController.swift in Sources */,
 				CB7F26062BF04BCA00700F35 /* analyzedInstructionData.swift in Sources */,
 				CB7F25F42BED8AD200700F35 /* RecipeData.swift in Sources */,

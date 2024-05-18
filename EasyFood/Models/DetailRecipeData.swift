@@ -19,11 +19,16 @@ struct ShortIngredient: Decodable {
     var image: String
 }
 
-struct CookingStep: Decodable {
+struct Step: Decodable {
     var number: Int
     var step: String
-    var ingredient: [ShortIngredient]
-    var equipments: [Equipment]
+    var ingredients: [ShortIngredient]
+    var equipment: [Equipment]
+}
+
+struct AnalyzedInstructions: Decodable {
+    var name: String?
+    var steps: [Step]
 }
 
 class DetailRecipeData: NSObject, Decodable {
@@ -37,7 +42,8 @@ class DetailRecipeData: NSObject, Decodable {
     var readyInMinutes: Int
     var servings: Int
     var summary: String
-    var analyzedInstructions: [CookingStep]
+    var analyzedInstructions: [AnalyzedInstructions]
+    var diets: [String]
 
     private enum ShortRecipeKey: String, CodingKey {
         case title
@@ -51,23 +57,29 @@ class DetailRecipeData: NSObject, Decodable {
         case servings
         case summary
         case analyzedInstructions
+        case diets
     }
 
     required init(from decoder: Decoder) throws {
         let recipeContainer = try decoder.container(keyedBy: ShortRecipeKey.self)
+//        let cookingStepContainer = try recipeContainer.nestedContainer(keyedBy:
+//            CookingStepKey.self, forKey: .analyzedInstructions)
 
-        // Get the book info
         title = try recipeContainer.decode(String.self, forKey: .title)
         id = try recipeContainer.decode(Int.self, forKey: .id)
         image = try recipeContainer.decode(String.self, forKey: .image)
         vegetarian = try recipeContainer.decode(Bool.self, forKey: .vegetarian)
         healthScore = try recipeContainer.decode(Int.self, forKey: .healthScore)
         pricePerServing = try recipeContainer.decode(Float.self, forKey: .pricePerServing)
-        extendedIngredients = try recipeContainer.decode([IngredientData].self, forKey: .extendedIngredients)
         readyInMinutes = try recipeContainer.decode(Int.self, forKey: .readyInMinutes)
         servings = try recipeContainer.decode(Int.self, forKey: .servings)
         summary = try recipeContainer.decode(String.self, forKey: .summary)
-        analyzedInstructions = try recipeContainer.decode([CookingStep].self, forKey: .analyzedInstructions)
+        diets = try recipeContainer.decode([String].self, forKey: .diets)
+        analyzedInstructions = try recipeContainer.decode([AnalyzedInstructions].self, forKey: .analyzedInstructions)
+        extendedIngredients = try recipeContainer.decode([IngredientData].self, forKey: .extendedIngredients)
+//        let instructions = try recipeContainer.decode([AnalyzedInstructions].self, forKey: .analyzedInstructions)
+
+//        analyzedInstructions = try recipeContainer.decode([CookingStep].self, forKey: .steps)
 
 //        {
 //            // Loop through array and find the ISBN13

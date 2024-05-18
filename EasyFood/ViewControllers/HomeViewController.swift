@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UICollectionViewDataSource, UISearchBarDelegate {
+class HomeViewController: UIViewController, UICollectionViewDataSource, UISearchBarDelegate, UICollectionViewDelegate {
     @IBOutlet var homeCollectionView: UICollectionView!
     let REQUEST_STRING = "https://api.spoonacular.com/recipes/random"
     let MAX_ITEMS_PER_REQUEST = 40
@@ -15,10 +15,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
     var currentRequestIndex: Int = 0
     var recipes = [ShortRecipeData]()
     var indicator = UIActivityIndicatorView()
+    var onSelectID: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         homeCollectionView.dataSource = self
+        homeCollectionView.delegate = self
 
         indicator.style = UIActivityIndicatorView.Style.large
         indicator.translatesAutoresizingMaskIntoConstraints = false
@@ -35,6 +37,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
         }
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        onSelectID = recipes[indexPath.row].id
+        performSegue(withIdentifier: "toDetailSegue", sender: self)
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return recipes.count
     }
@@ -43,6 +50,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
         let cell = homeCollectionView.dequeueReusableCell(withReuseIdentifier: "homepageCollectionCell", for: indexPath) as! HomepageCollectionViewCell
         cell.setup(with: recipes[indexPath.row])
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return true
     }
 
     func requestRecipeNamed(_ recipeName: String) async {
@@ -89,6 +100,15 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
 
         } catch {
             print(error)
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "toDetailSegue" {
+            let destination = segue.destination as! DetailViewController
+            destination.recipesID = onSelectID
         }
     }
 }
