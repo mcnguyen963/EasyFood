@@ -48,17 +48,18 @@ class DetailViewController: UIViewController {
             recipeName.text = recipesData?.title ?? ""
             briefInforText.text = "Price per Services: $\(recipesData?.pricePerServing ?? 0) || Est \(recipesData?.readyInMinutes ?? 0) Minutes ||\(recipesData?.servings ?? 0) Servings || Healthy Score:\(recipesData?.healthScore ?? 0)"
             descriptionTextField.text = recipesData?.summary ?? ""
+            print("he")
         }
-        if let Recipedata = recipesData {
-            recipeName.text = Recipedata.title
-            briefInforText.text = "Price per Services: $\(Recipedata.pricePerServing) || Est \(Recipedata.readyInMinutes) Minutes ||\(Recipedata.servings) Servings || Healthy Score:\(Recipedata.healthScore)"
-            descriptionTextField.text = Recipedata.summary
-            var igredientList = ""
-            for ingre in Recipedata.extendedIngredients {
-                igredientList = "\(igredientList)\(ingre.name) \n"
-            }
-            ingredientsTextField.text = igredientList
-        }
+//        if let Recipedata = recipesData {
+//            recipeName.text = Recipedata.title
+//            briefInforText.text = "Price per Services: $\(Recipedata.pricePerServing) || Est \(Recipedata.readyInMinutes) Minutes ||\(Recipedata.servings) Servings || Healthy Score:\(Recipedata.healthScore)"
+//            descriptionTextField.text = Recipedata.summary
+//            var igredientList = ""
+//            for ingre in Recipedata.extendedIngredients {
+//                igredientList = "\(igredientList)\(ingre.name) \n"
+//            }
+//            ingredientsTextField.text = igredientList
+//        }
     }
 
     func getReceiptData(id: Int) async {
