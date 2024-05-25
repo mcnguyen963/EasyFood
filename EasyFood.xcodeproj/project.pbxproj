@@ -19,11 +19,12 @@
 		CB7F25F62BED8AF900700F35 /* CookingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F25F52BED8AF900700F35 /* CookingData.swift */; };
 		CB7F25F82BED8DA100700F35 /* IngredientData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F25F72BED8DA100700F35 /* IngredientData.swift */; };
 		CB7F25FC2BEDA4C400700F35 /* ShortRecipeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F25FB2BEDA4C400700F35 /* ShortRecipeData.swift */; };
-		CB7F26002BEF1E3600700F35 /* TestingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F25FF2BEF1E3600700F35 /* TestingCollectionViewCell.swift */; };
-		CB7F26022BEF1EBE00700F35 /* TestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F26012BEF1EBE00700F35 /* TestingViewController.swift */; };
 		CB7F26042BF0484300700F35 /* DetailRecipeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F26032BF0484300700F35 /* DetailRecipeData.swift */; };
 		CB7F26062BF04BCA00700F35 /* analyzedInstructionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F26052BF04BCA00700F35 /* analyzedInstructionData.swift */; };
 		CB8234E72BE4B66500465B31 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8234E62BE4B66500465B31 /* MainViewController.swift */; };
+		CBBF43952C02577300435037 /* EasyfoodModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CBBF43932C02577300435037 /* EasyfoodModel.xcdatamodeld */; };
+		CBBF43972C025C0B00435037 /* RecipeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBF43962C025C0B00435037 /* RecipeStorage.swift */; };
+		CBBF43992C026BB700435037 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBF43982C026BB700435037 /* TestViewController.swift */; };
 		CBCE32BA2BDB3BFF00B15EEF /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE32B92BDB3BFF00B15EEF /* LogInViewController.swift */; };
 		CBCE32BD2BDB3F1600B15EEF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CBCE32BC2BDB3F1600B15EEF /* FirebaseAuth */; };
 		CBCE32BF2BDB3F1600B15EEF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CBCE32BE2BDB3F1600B15EEF /* FirebaseFirestore */; };
@@ -52,11 +53,12 @@
 		CB7F25F52BED8AF900700F35 /* CookingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingData.swift; sourceTree = "<group>"; };
 		CB7F25F72BED8DA100700F35 /* IngredientData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientData.swift; sourceTree = "<group>"; };
 		CB7F25FB2BEDA4C400700F35 /* ShortRecipeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortRecipeData.swift; sourceTree = "<group>"; };
-		CB7F25FF2BEF1E3600700F35 /* TestingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingCollectionViewCell.swift; sourceTree = "<group>"; };
-		CB7F26012BEF1EBE00700F35 /* TestingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingViewController.swift; sourceTree = "<group>"; };
 		CB7F26032BF0484300700F35 /* DetailRecipeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecipeData.swift; sourceTree = "<group>"; };
 		CB7F26052BF04BCA00700F35 /* analyzedInstructionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = analyzedInstructionData.swift; sourceTree = "<group>"; };
 		CB8234E62BE4B66500465B31 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		CBBF43942C02577300435037 /* EasyfoodModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EasyfoodModel.xcdatamodel; sourceTree = "<group>"; };
+		CBBF43962C025C0B00435037 /* RecipeStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeStorage.swift; sourceTree = "<group>"; };
+		CBBF43982C026BB700435037 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		CBCE32B92BDB3BFF00B15EEF /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		CBCE32C22BDB412600B15EEF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CBCE32C42BDB546800B15EEF /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -130,12 +132,20 @@
 				CB7F25F52BED8AF900700F35 /* CookingData.swift */,
 				CB7F25F72BED8DA100700F35 /* IngredientData.swift */,
 				CB7F25FB2BEDA4C400700F35 /* ShortRecipeData.swift */,
-				CB7F25FF2BEF1E3600700F35 /* TestingCollectionViewCell.swift */,
 				CB7F26032BF0484300700F35 /* DetailRecipeData.swift */,
-				CB7F26012BEF1EBE00700F35 /* TestingViewController.swift */,
 				CB7F26052BF04BCA00700F35 /* analyzedInstructionData.swift */,
+				CBBF43962C025C0B00435037 /* RecipeStorage.swift */,
+				CBBF43982C026BB700435037 /* TestViewController.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CBBF43922C02575100435037 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				CBBF43932C02577300435037 /* EasyfoodModel.xcdatamodeld */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 		CBDD9E952BA7EA14001AFC33 = {
@@ -161,6 +171,7 @@
 				CBDD9EA12BA7EA14001AFC33 /* AppDelegate.swift */,
 				CB8234E62BE4B66500465B31 /* MainViewController.swift */,
 				CBDD9EA32BA7EA14001AFC33 /* SceneDelegate.swift */,
+				CBBF43922C02575100435037 /* DataModel */,
 				CB34B0952BDB58A70059A17E /* DataBase */,
 				CBDD9EA52BA7EA14001AFC33 /* ViewController.swift */,
 				CBDD9EA72BA7EA14001AFC33 /* Main.storyboard */,
@@ -256,19 +267,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB7F26002BEF1E3600700F35 /* TestingCollectionViewCell.swift in Sources */,
 				CB7F25F62BED8AF900700F35 /* CookingData.swift in Sources */,
 				CB300ACF2BF63CA2001B6A72 /* DetailViewController.swift in Sources */,
 				CB300ACC2BF46728001B6A72 /* SearchCollectionViewCell.swift in Sources */,
 				CB34B0992BDB59110059A17E /* DatabaseProtocol.swift in Sources */,
-				CB7F26022BEF1EBE00700F35 /* TestingViewController.swift in Sources */,
 				CB300AC72BF45A38001B6A72 /* HomepageCollectionViewCell.swift in Sources */,
 				CB7F25FC2BEDA4C400700F35 /* ShortRecipeData.swift in Sources */,
 				CB8234E72BE4B66500465B31 /* MainViewController.swift in Sources */,
 				CBDD9EA62BA7EA14001AFC33 /* ViewController.swift in Sources */,
+				CBBF43972C025C0B00435037 /* RecipeStorage.swift in Sources */,
 				CB7F25F82BED8DA100700F35 /* IngredientData.swift in Sources */,
+				CBBF43992C026BB700435037 /* TestViewController.swift in Sources */,
 				CB34B0972BDB58CD0059A17E /* FirebaseController.swift in Sources */,
 				CBDD9EA22BA7EA14001AFC33 /* AppDelegate.swift in Sources */,
+				CBBF43952C02577300435037 /* EasyfoodModel.xcdatamodeld in Sources */,
 				CBDD9EA42BA7EA14001AFC33 /* SceneDelegate.swift in Sources */,
 				CB7F26042BF0484300700F35 /* DetailRecipeData.swift in Sources */,
 				CBCE32C52BDB546800B15EEF /* RegisterViewController.swift in Sources */,
@@ -527,6 +539,16 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
+		CBBF43932C02577300435037 /* EasyfoodModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CBBF43942C02577300435037 /* EasyfoodModel.xcdatamodel */,
+			);
+			currentVersion = CBBF43942C02577300435037 /* EasyfoodModel.xcdatamodel */;
+			path = EasyfoodModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		CBDD9EAA2BA7EA14001AFC33 /* EasyFood.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

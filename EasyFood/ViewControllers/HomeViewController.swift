@@ -7,6 +7,7 @@
 
 import UIKit
 
+let SAVED_RECIPES_KEY = "SAVED_RECIPES_KEY"
 class HomeViewController: UIViewController, UICollectionViewDataSource, UISearchBarDelegate, UICollectionViewDelegate {
     @IBOutlet var homeCollectionView: UICollectionView!
     let REQUEST_STRING = "https://api.spoonacular.com/recipes/random"
@@ -31,6 +32,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
             indicator.centerYAnchor.constraint(equalTo:
                 view.safeAreaLayoutGuide.centerYAnchor),
         ])
+//        getRecipesTest()
         Task {
             currentRequestIndex = 0
             await requestRecipeNamed("Chicken")
@@ -65,7 +67,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
             URLQueryItem(name: "maxResults", value: "\(MAX_ITEMS_PER_REQUEST)"),
             URLQueryItem(name: "startIndex", value: "\(currentRequestIndex * MAX_ITEMS_PER_REQUEST)"),
             URLQueryItem(name: "apiKey", value: "baee3d6b25894651a9d3904b9fed4428"),
-
             URLQueryItem(name: "query", value: recipeName),
         ]
         guard let requestURL = searchURLComponents.url else {
@@ -86,6 +87,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
 
                 if let recipe = cookingData.results {
                     recipes.append(contentsOf: recipe)
+                    RecipeStorage.saveRecipes(recipes, forKey: SAVED_RECIPES_KEY)
+
                     homeCollectionView.reloadData()
                     if recipes.count == MAX_ITEMS_PER_REQUEST,
                        currentRequestIndex + 1 < MAX_REQUESTS
@@ -110,5 +113,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
             let destination = segue.destination as! DetailViewController
             destination.recipesID = onSelectID
         }
+    }
+
+    func getRecipesTest() {
+        recipes = RecipeStorage.loadRecipes(forKey: SAVED_RECIPES_KEY) ?? []
     }
 }
