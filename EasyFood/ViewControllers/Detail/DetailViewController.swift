@@ -7,22 +7,26 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     var recipesID: Int?
     var recipesData: DetailRecipeData?
     var indicator = UIActivityIndicatorView()
+    var scrollView: UIScrollView!
 
+    @IBOutlet var detailCollectionViewField: UICollectionView!
     @IBOutlet var briefInforText: UITextView!
     @IBOutlet var imageView: UIImageView!
 
     @IBOutlet var descriptionTextField: UITextView!
     @IBOutlet var recipeName: UITextView!
 
-    @IBOutlet var ingredientsTextField: UITextView!
+    @IBOutlet var detailCollectionView: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        detailCollectionViewField.delegate = self
+        detailCollectionViewField.dataSource = self
         indicator.style = UIActivityIndicatorView.Style.large
         indicator.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(indicator)
@@ -40,7 +44,32 @@ class DetailViewController: UIViewController {
                 updatinData()
             }
         }
+
         // Do any additional setup after loading the view.
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let noOfCellsInRow = 1
+
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+
+        let totalSpace = flowLayout.sectionInset.left
+            + flowLayout.sectionInset.right
+            + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
+
+        let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
+
+        return CGSize(width: size, height: size)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return recipesData?.extendedIngredients.count ?? 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = detailCollectionViewField.dequeueReusableCell(withReuseIdentifier: "ingredientCollectionCell", for: indexPath) as! DetailCollectionViewCell
+        cell.setup(ingredientData: recipesData?.extendedIngredients[indexPath.row])
+        return cell
     }
 
     func updatinData() {
@@ -48,7 +77,7 @@ class DetailViewController: UIViewController {
             recipeName.text = recipesData?.title ?? ""
             briefInforText.text = "Price per Services: $\(recipesData?.pricePerServing ?? 0) || Est \(recipesData?.readyInMinutes ?? 0) Minutes ||\(recipesData?.servings ?? 0) Servings || Healthy Score:\(recipesData?.healthScore ?? 0)"
             descriptionTextField.text = recipesData?.summary ?? ""
-            print("he")
+            detailCollectionViewField.reloadData()
         }
     }
 
@@ -94,4 +123,19 @@ class DetailViewController: UIViewController {
          // Pass the selected object to the new view controller.
      }
      */
+}
+
+class DetailCollectionViewCell: UICollectionViewCell {
+    @IBOutlet var nameTextField: UILabel!
+    @IBOutlet var quantityTextField: UILabel!
+
+    @IBOutlet var unitTextField: UILabel!
+
+    func setup(ingredientData: IngredientData?) {
+        if let a = ingredientData {
+            nameTextField.text = a.name
+            quantityTextField.text = String(a.amount)
+            unitTextField.text = a.unit
+        }
+    }
 }

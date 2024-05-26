@@ -61,7 +61,7 @@ class HomepageCollectionViewCell: UICollectionViewCell {
         task.resume()
     }
 
-    @IBAction func saveRecipes(_ sender: Any) {
+    @IBAction func saveButtonTap(_ sender: Any) {
         if currentRecipe != nil {
             if currentRecipe!.isSaved {
                 currentRecipe!.isSaved = true
