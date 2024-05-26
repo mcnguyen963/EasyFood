@@ -36,7 +36,8 @@ class RecipeStorage: NSObject {
 
     static func addRecipe(recipe: ShortRecipeData, forKey key: String) {
         var recipesTemp: [ShortRecipeData] = loadRecipes(forKey: key) ?? []
-        if isStoredRecipes(recipe: recipe, forKey: key) {
+        if !isStoredRecipes(recipe: recipe, forKey: key) {
+            recipe.isSaved = true
             recipesTemp.append(recipe)
             saveRecipes(recipesTemp, forKey: key)
         }
@@ -52,8 +53,8 @@ class RecipeStorage: NSObject {
 
     static func isStoredRecipes(recipe: ShortRecipeData, forKey key: String) -> Bool {
         var recipesTemp: [ShortRecipeData] = loadRecipes(forKey: key) ?? []
-        if recipesTemp != [] {
-            if recipesTemp.contains(recipe) {
+        for temp in recipesTemp {
+            if temp.id == recipe.id {
                 return true
             }
         }

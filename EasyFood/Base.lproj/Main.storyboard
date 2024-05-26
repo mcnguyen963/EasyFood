@@ -707,9 +707,11 @@
                                                         <constraint firstAttribute="height" constant="40" id="umf-AO-h7t"/>
                                                     </constraints>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                    <state key="normal" title="" image="heart" catalog="system"/>
+                                                    <state key="normal" image="heart" catalog="system"/>
                                                     <connections>
-                                                        <action selector="saveButtonTap:" destination="Z92-gv-wa7" eventType="touchUpInside" id="Cc8-l0-bJy"/>
+                                                        <action selector="saveRecipe:" destination="vk2-TC-ebx" eventType="touchUpInside" id="SNh-3D-Yv1"/>
+                                                        <action selector="saveRecipes:" destination="1H2-oi-DwY" eventType="touchUpInside" id="oNU-2o-eIe"/>
+                                                        <action selector="unSaveRecipe:" destination="1H2-oi-DwY" eventType="touchUpInside" id="5wp-9O-3B3"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -729,7 +731,7 @@
                                         <connections>
                                             <outlet property="cellImageView" destination="Pc1-WC-fy1" id="8f4-SU-SBs"/>
                                             <outlet property="cellTitle" destination="vqb-dA-sW5" id="bnR-5q-BFm"/>
-                                            <outlet property="saveButton" destination="uJW-PF-NVF" id="Te7-ca-BRN"/>
+                                            <outlet property="saveButton" destination="uJW-PF-NVF" id="LJe-Lb-BcU"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -762,6 +764,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L9j-Wh-E7r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="1H2-oi-DwY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4274" y="-201"/>
         </scene>
@@ -913,7 +916,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kyI-50-1CP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6725.5813953488368" y="485.40772532188845"/>
+            <point key="canvasLocation" x="7753" y="688"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="9B7-HE-JHz">
@@ -954,10 +957,10 @@
             </objects>
             <point key="canvasLocation" x="9806.8702290076326" y="204.92957746478874"/>
         </scene>
-        <!--View Controller-->
+        <!--Saved View Controller-->
         <scene sceneID="A8g-7u-tcS">
             <objects>
-                <viewController id="1er-GX-Rw6" sceneMemberID="viewController">
+                <viewController id="1er-GX-Rw6" customClass="SavedViewController" customModule="EasyFood" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0ns-4r-Soc"/>
                         <viewControllerLayoutGuide type="bottom" id="wiE-lk-iYa"/>
@@ -981,7 +984,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="CT6-Qj-EPy">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="saveViewCell" id="CT6-Qj-EPy" customClass="SaveCollectionViewCell" customModule="EasyFood" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="289"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NFD-aE-uKf">
@@ -1000,18 +1003,37 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cz8-A2-R1Z">
+                                                    <rect key="frame" x="341" y="5" width="44" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="5W2-7i-hSq"/>
+                                                    </constraints>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" title="" image="heart" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="saveItem:" destination="1er-GX-Rw6" eventType="touchUpInside" id="lsA-Ph-Jiy"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Cz8-A2-R1Z" secondAttribute="trailing" constant="5" id="5gv-2t-LNN"/>
                                                 <constraint firstAttribute="bottom" secondItem="dnn-yy-AL5" secondAttribute="bottom" constant="10" id="CEA-xA-ac1"/>
+                                                <constraint firstItem="Cz8-A2-R1Z" firstAttribute="width" secondItem="Cz8-A2-R1Z" secondAttribute="height" multiplier="55:50" id="Gfw-XC-RLe"/>
                                                 <constraint firstItem="tzE-3p-PaT" firstAttribute="leading" secondItem="NFD-aE-uKf" secondAttribute="leading" id="HEW-Qx-kKs"/>
                                                 <constraint firstAttribute="trailing" secondItem="tzE-3p-PaT" secondAttribute="trailing" id="IYj-oe-MiP"/>
                                                 <constraint firstAttribute="trailing" secondItem="dnn-yy-AL5" secondAttribute="trailing" constant="10" id="SAJ-kR-UiP"/>
                                                 <constraint firstItem="tzE-3p-PaT" firstAttribute="top" secondItem="NFD-aE-uKf" secondAttribute="top" id="a7a-p0-0pJ"/>
+                                                <constraint firstItem="Cz8-A2-R1Z" firstAttribute="top" secondItem="NFD-aE-uKf" secondAttribute="top" constant="5" id="isl-0p-WvU"/>
                                                 <constraint firstItem="dnn-yy-AL5" firstAttribute="leading" secondItem="NFD-aE-uKf" secondAttribute="leading" constant="10" id="nZQ-Kb-ZjT"/>
                                                 <constraint firstItem="dnn-yy-AL5" firstAttribute="top" secondItem="tzE-3p-PaT" secondAttribute="bottom" constant="10" id="v48-44-zZV"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="390" height="289"/>
+                                        <connections>
+                                            <outlet property="cellImageView" destination="tzE-3p-PaT" id="1NX-1x-HLD"/>
+                                            <outlet property="cellTitle" destination="dnn-yy-AL5" id="p2s-Vr-WEh"/>
+                                            <outlet property="saveButton" destination="Cz8-A2-R1Z" id="8nN-Zo-J1f"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -1028,6 +1050,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OOQ-UP-V7u"/>
+                    <connections>
+                        <outlet property="collectionViewField" destination="xDW-mx-f5a" id="hRh-K7-oyw"/>
+                        <segue destination="4ue-dI-uYH" kind="show" identifier="toDetailSegue" id="IHY-Vf-9wL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OaY-d4-wK4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2842,7 +2868,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tbx-M9-0fX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8766.9767441860458" y="1612.6609442060087"/>
+            <point key="canvasLocation" x="6511" y="485"/>
         </scene>
         <!--Receipes Details-->
         <scene sceneID="tLF-Bg-a6s">
@@ -3270,17 +3296,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgZ-67-xrP">
-                                                    <rect key="frame" x="5" y="209.66666666666666" width="351" height="59.333333333333343"/>
+                                                    <rect key="frame" x="5" y="220" width="351" height="49"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Riu-iQ-Qtx">
-                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="199.66666666666666"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="380" height="210"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Riu-iQ-Qtx" secondAttribute="height" multiplier="380:210" id="4y8-CZ-YI9"/>
-                                                        <constraint firstAttribute="width" constant="351" id="8WJ-ay-iHy"/>
-                                                        <constraint firstAttribute="height" constant="227" id="p4g-qC-sqd"/>
+                                                        <constraint firstAttribute="width" constant="380" id="8WJ-ay-iHy"/>
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YpA-fb-h1s">
@@ -3303,7 +3328,6 @@
                                                 <constraint firstItem="Riu-iQ-Qtx" firstAttribute="top" secondItem="IEh-v4-t02" secondAttribute="top" id="Thj-by-Ml4"/>
                                                 <constraint firstItem="YpA-fb-h1s" firstAttribute="top" secondItem="IEh-v4-t02" secondAttribute="top" constant="5" id="Xst-RJ-xj7"/>
                                                 <constraint firstItem="zgZ-67-xrP" firstAttribute="leading" secondItem="IEh-v4-t02" secondAttribute="leading" constant="5" id="hhX-R7-Hdb"/>
-                                                <constraint firstAttribute="trailing" secondItem="Riu-iQ-Qtx" secondAttribute="trailing" id="il2-SW-XqD"/>
                                                 <constraint firstAttribute="bottom" secondItem="zgZ-67-xrP" secondAttribute="bottom" constant="10" id="yK1-kq-211"/>
                                             </constraints>
                                         </collectionViewCellContentView>
@@ -3407,14 +3431,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eW3-Mu-A2e">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eW3-Mu-A2e">
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="edr-nO-kY8">
-                                        <rect key="frame" x="0.0" y="0.0" width="430" height="1122.3333333333333"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="edr-nO-kY8">
+                                        <rect key="frame" x="0.0" y="0.0" width="430" height="1323"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Tsb-d6-SQ9">
-                                                <rect key="frame" x="5" y="0.0" width="420" height="1122.3333333333333"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Tsb-d6-SQ9">
+                                                <rect key="frame" x="5" y="0.0" width="420" height="1323"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue salad" translatesAutoresizingMaskIntoConstraints="NO" id="DAR-Mj-GmX">
                                                         <rect key="frame" x="0.0" y="0.0" width="420" height="307.33333333333331"/>
@@ -3474,12 +3498,9 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rLf-EE-5b6">
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rLf-EE-5b6">
                                                         <rect key="frame" x="0.0" y="622.33333333333337" width="420" height="500.00000000000011"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="500" id="m72-kN-8np"/>
-                                                        </constraints>
                                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lC5-QX-Qw0">
                                                             <size key="itemSize" width="409" height="59"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -3487,7 +3508,7 @@
                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
                                                         <cells>
-                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingredientCollectionCell" id="JuQ-Am-oIy" customClass="DetailCollectionViewCell" customModule="EasyFood" customModuleProvider="target">
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ingredientCollectionCell" reuseIdentifier="ingredientCollectionCell" id="JuQ-Am-oIy" customClass="DetailCollectionViewCell" customModule="EasyFood" customModuleProvider="target">
                                                                 <rect key="frame" x="5.666666666666667" y="0.0" width="409" height="59"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ndy-8O-X4R">
@@ -3521,6 +3542,7 @@
                                                                         <constraint firstAttribute="bottom" secondItem="p80-ay-Atw" secondAttribute="bottom" constant="5" id="vsE-PG-afH"/>
                                                                     </constraints>
                                                                 </collectionViewCellContentView>
+                                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                                 <size key="customSize" width="409" height="59"/>
                                                                 <connections>
                                                                     <outlet property="nameField" destination="p80-ay-Atw" id="4ia-kd-gcd"/>
@@ -3529,7 +3551,75 @@
                                                             </collectionViewCell>
                                                         </cells>
                                                     </collectionView>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1v8-0i-4cP">
+                                                        <rect key="frame" x="0.0" y="1128.3333333333333" width="420" height="34.333333333333258"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="View more"/>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Cooking Steps:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bh5-f5-KHb">
+                                                        <rect key="frame" x="0.0" y="1168.6666666666667" width="420" height="20.333333333333258"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ti4-7v-Xp1">
+                                                        <rect key="frame" x="0.0" y="1195" width="420" height="128"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="Ti4-7v-Xp1" secondAttribute="height" multiplier="105:32" id="TEf-5N-kfw"/>
+                                                        </constraints>
+                                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kjp-fi-MR0">
+                                                            <size key="itemSize" width="414" height="47"/>
+                                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        </collectionViewFlowLayout>
+                                                        <cells>
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cookingStepViewCell" id="U9t-37-36h" customClass="CookingStepCollectionViewCell" customModule="EasyFood" customModuleProvider="target">
+                                                                <rect key="frame" x="3" y="0.0" width="414" height="47"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="iuy-Sl-Z8K">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="47"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <subviews>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MfL-Fq-YVw">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="47"/>
+                                                                            <subviews>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQ4-vQ-ycd">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="47"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="40" id="Qiq-gV-xVX"/>
+                                                                                    </constraints>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                    <nil key="textColor"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                            </subviews>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="MfL-Fq-YVw" secondAttribute="height" multiplier="140:23" id="qI5-eY-nkV"/>
+                                                                                <constraint firstAttribute="height" constant="40" id="xzV-be-0kn"/>
+                                                                            </constraints>
+                                                                        </stackView>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="bottom" secondItem="MfL-Fq-YVw" secondAttribute="bottom" id="R6p-YF-yxp"/>
+                                                                        <constraint firstItem="MfL-Fq-YVw" firstAttribute="top" secondItem="iuy-Sl-Z8K" secondAttribute="top" id="fKv-ch-PC4"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="MfL-Fq-YVw" secondAttribute="trailing" id="gS0-a6-hau"/>
+                                                                        <constraint firstItem="MfL-Fq-YVw" firstAttribute="leading" secondItem="iuy-Sl-Z8K" secondAttribute="leading" id="gms-cq-OQI"/>
+                                                                    </constraints>
+                                                                </collectionViewCellContentView>
+                                                                <size key="customSize" width="414" height="47"/>
+                                                                <connections>
+                                                                    <outlet property="label" destination="NQ4-vQ-ycd" id="B3y-KH-yFa"/>
+                                                                </connections>
+                                                            </collectionViewCell>
+                                                        </cells>
+                                                    </collectionView>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="Ti4-7v-Xp1" secondAttribute="trailing" id="E9r-gr-yfN"/>
+                                                    <constraint firstItem="Ti4-7v-Xp1" firstAttribute="leading" secondItem="Tsb-d6-SQ9" secondAttribute="leading" id="n1t-s3-9uk"/>
+                                                </constraints>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -3542,6 +3632,7 @@
                                     </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="width" secondItem="eW3-Mu-A2e" secondAttribute="height" multiplier="215:466" id="Qsj-Yw-BaV"/>
                                     <constraint firstItem="edr-nO-kY8" firstAttribute="bottom" secondItem="eW3-Mu-A2e" secondAttribute="bottom" id="W1D-Dp-oIP"/>
                                     <constraint firstItem="edr-nO-kY8" firstAttribute="leading" secondItem="eW3-Mu-A2e" secondAttribute="leading" id="cr1-0y-JeD"/>
                                     <constraint firstItem="edr-nO-kY8" firstAttribute="top" secondItem="eW3-Mu-A2e" secondAttribute="top" id="j1D-LO-6hJ"/>
@@ -3554,19 +3645,22 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="edr-nO-kY8" firstAttribute="width" secondItem="IHt-8m-gI0" secondAttribute="width" id="EnO-9m-Wp3"/>
+                            <constraint firstAttribute="trailing" secondItem="eW3-Mu-A2e" secondAttribute="trailing" id="JDd-g8-Gpj"/>
                             <constraint firstItem="eW3-Mu-A2e" firstAttribute="leading" secondItem="IHt-8m-gI0" secondAttribute="leading" id="NBp-du-hRO"/>
                             <constraint firstAttribute="bottom" secondItem="eW3-Mu-A2e" secondAttribute="bottom" id="VV7-Zl-QEO"/>
                             <constraint firstAttribute="trailing" secondItem="eW3-Mu-A2e" secondAttribute="trailing" id="aBn-W2-l8T"/>
+                            <constraint firstItem="eW3-Mu-A2e" firstAttribute="leading" secondItem="IHt-8m-gI0" secondAttribute="leading" id="iuj-2e-y8Q"/>
                             <constraint firstAttribute="top" secondItem="eW3-Mu-A2e" secondAttribute="top" id="qup-hD-rZH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Receipes Details" id="VAN-bg-9hs"/>
                     <connections>
                         <outlet property="briefInforText" destination="CXj-RZ-ZxK" id="2RL-Hb-nOA"/>
+                        <outlet property="cookingStepCollectionView" destination="Ti4-7v-Xp1" id="exA-ic-wiU"/>
                         <outlet property="descriptionTextField" destination="mFG-it-lcC" id="c72-su-S4A"/>
-                        <outlet property="detailCollectionView" destination="rLf-EE-5b6" id="2Gx-Oe-iDt"/>
-                        <outlet property="detailCollectionViewField" destination="rLf-EE-5b6" id="ikx-pr-pAI"/>
+                        <outlet property="detailCollectionViewField" destination="rLf-EE-5b6" id="iGM-OP-z5B"/>
                         <outlet property="imageView" destination="DAR-Mj-GmX" id="bSB-Af-UGP"/>
+                        <outlet property="imageViewField" destination="DAR-Mj-GmX" id="Y5a-7C-sKO"/>
                         <outlet property="recipeName" destination="ck3-sc-qyk" id="hor-ps-qus"/>
                     </connections>
                 </viewController>
@@ -3662,7 +3756,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="X4e-fZ-LcO"/>
+        <segue reference="IHY-Vf-9wL"/>
         <segue reference="kYR-EA-GHO"/>
     </inferredMetricsTieBreakers>
     <resources>

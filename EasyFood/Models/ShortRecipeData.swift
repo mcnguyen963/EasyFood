@@ -35,6 +35,10 @@ class ShortRecipeData: NSObject, Decodable, Encodable {
         try container.encode(id, forKey: .id)
         try container.encode(image, forKey: .image)
     }
+
+    static func == (lhs: ShortRecipeData, rhs: ShortRecipeData) -> Bool {
+        return lhs.id == rhs.id // compare based on whatever makes sense in your case
+    }
 }
 
 extension UserDefaults {

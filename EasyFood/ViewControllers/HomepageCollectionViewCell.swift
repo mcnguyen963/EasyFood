@@ -10,6 +10,7 @@ import UIKit
 class HomepageCollectionViewCell: UICollectionViewCell {
     @IBOutlet var cellTitle: UILabel!
     @IBOutlet var cellImageView: UIImageView!
+
     @IBOutlet var saveButton: UIButton!
     private var currentRecipe: ShortRecipeData?
 
@@ -23,7 +24,8 @@ class HomepageCollectionViewCell: UICollectionViewCell {
             print("Invalid image URL: \(shortRecipeData.image)")
         }
         cellTitle.text = shortRecipeData.title
-        if shortRecipeData.isSaved {
+
+        if RecipeStorage.isStoredRecipes(recipe: shortRecipeData, forKey: "SAVED_RECIPES_KEY") {
             saveButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
             saveButton.setImage(UIImage(systemName: "heart"), for: .normal)
@@ -59,17 +61,5 @@ class HomepageCollectionViewCell: UICollectionViewCell {
 
         // Resume the task
         task.resume()
-    }
-
-    @IBAction func saveButtonTap(_ sender: Any) {
-        if currentRecipe != nil {
-            if currentRecipe!.isSaved {
-                currentRecipe!.isSaved = true
-                RecipeStorage.addRecipe(recipe: currentRecipe!, forKey: "SAVED_RECIPES_KEY")
-            } else {
-                currentRecipe!.isSaved = false
-                RecipeStorage.removeRecipe(currentRecipe!, forKey: "SAVED_RECIPES_KEY")
-            }
-        }
     }
 }

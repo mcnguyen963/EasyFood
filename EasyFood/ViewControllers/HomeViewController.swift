@@ -17,12 +17,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
     var recipes = [ShortRecipeData]()
     var indicator = UIActivityIndicatorView()
     var onSelectID: Int?
-
+    var savedRecipes: [ShortRecipeData] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         homeCollectionView.dataSource = self
         homeCollectionView.delegate = self
-
         indicator.style = UIActivityIndicatorView.Style.large
         indicator.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(indicator)
@@ -32,32 +31,36 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
             indicator.centerYAnchor.constraint(equalTo:
                 view.safeAreaLayoutGuide.centerYAnchor),
         ])
-//        getRecipesTest()
+        savedRecipes = RecipeStorage.loadRecipes(forKey: "SAVED_RECIPES_KEY") ?? []
+        //        getRecipesTest()
         Task {
             currentRequestIndex = 0
             await requestRecipeNamed("Chicken")
         }
     }
-
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         onSelectID = recipes[indexPath.row].id
         performSegue(withIdentifier: "toDetailSegue", sender: self)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return recipes.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = homeCollectionView.dequeueReusableCell(withReuseIdentifier: "homepageCollectionCell", for: indexPath) as! HomepageCollectionViewCell
         cell.setup(with: recipes[indexPath.row])
+        if savedRecipes.contains(recipes[indexPath.row]) {
+            recipes[indexPath.row].isSaved = true
+        }
         return cell
     }
-
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-
+    
     func requestRecipeNamed(_ recipeName: String) async {
         var searchURLComponents = URLComponents()
         searchURLComponents.scheme = "https"
@@ -73,22 +76,22 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
             print("Invalid URL.")
             return
         }
-
+        
         let urlRequest = URLRequest(url: requestURL)
-
+        
         do {
             let (data, _) =
                 try await URLSession.shared.data(for: urlRequest)
             indicator.stopAnimating()
             do {
                 let decoder = JSONDecoder()
-
+                
                 let cookingData = try decoder.decode(CookingData.self, from: data)
-
+                
                 if let recipe = cookingData.results {
                     recipes.append(contentsOf: recipe)
                     RecipeStorage.saveRecipes(recipes, forKey: SAVED_RECIPES_KEY)
-
+                    
                     homeCollectionView.reloadData()
                     if recipes.count == MAX_ITEMS_PER_REQUEST,
                        currentRequestIndex + 1 < MAX_REQUESTS
@@ -100,12 +103,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
             } catch {
                 print(error)
             }
-
+            
         } catch {
             print(error)
         }
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
@@ -114,8 +117,27 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
             destination.recipesID = onSelectID
         }
     }
-
+    
     func getRecipesTest() {
         recipes = RecipeStorage.loadRecipes(forKey: SAVED_RECIPES_KEY) ?? []
+    }
+    
+    func didTapSaveButton(recipes: ShortRecipeData) {
+        if !recipes.isSaved {
+            recipes.isSaved = true
+            RecipeStorage.addRecipe(recipe: recipes, forKey: "SAVED_RECIPES_KEY")
+        } else {
+            recipes.isSaved = false
+            RecipeStorage.removeRecipe(recipes, forKey: "SAVED_RECIPES_KEY")
+        }
+    }
+    
+    @IBAction func saveRecipe(_ sender: UIButton) {
+        let buttonPosition = sender.convert(CGPoint.zero, to: homeCollectionView)
+        if let indexPath = homeCollectionView.indexPathForItem(at: buttonPosition) {
+            let recipe = recipes[indexPath.row]
+            didTapSaveButton(recipes: recipe)
+            homeCollectionView.reloadItems(at: [indexPath])
+        }
     }
 }

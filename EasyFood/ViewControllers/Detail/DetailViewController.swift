@@ -7,13 +7,16 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class DetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var recipesID: Int?
     var recipesData: DetailRecipeData?
     var indicator = UIActivityIndicatorView()
     var scrollView: UIScrollView!
-
     @IBOutlet var detailCollectionViewField: UICollectionView!
+
+    @IBOutlet var imageViewField: UIImageView!
+
+    @IBOutlet var cookingStepCollectionView: UICollectionView!
     @IBOutlet var briefInforText: UITextView!
     @IBOutlet var imageView: UIImageView!
 
@@ -27,6 +30,9 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
 
         detailCollectionViewField.delegate = self
         detailCollectionViewField.dataSource = self
+//        cookingStepCollectionView.delegate = self
+//        cookingStepCollectionView.dataSource = self
+
         indicator.style = UIActivityIndicatorView.Style.large
         indicator.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(indicator)
@@ -49,17 +55,9 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let noOfCellsInRow = 1
-
-        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-
-        let totalSpace = flowLayout.sectionInset.left
-            + flowLayout.sectionInset.right
-            + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
-
-        let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
-
-        return CGSize(width: size, height: size)
+        let width = view.frame.size.width
+        let height = view.frame.size.width * 1 / 40 // ratio
+        return CGSize(width: width, height: height)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -67,6 +65,17 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        if collectionView == detailCollectionViewField {
+//            let cell = detailCollectionViewField.dequeueReusableCell(withReuseIdentifier: "ingredientCollectionCell", for: indexPath) as! DetailCollectionViewCell
+//            cell.setup(ingredientData: recipesData?.extendedIngredients[indexPath.row])
+//            return cell
+//        }
+        ////        if collectionView == cookingStepCollectionView {
+        ////            let cell = cookingStepCollectionView.dequeueReusableCell(withReuseIdentifier: "cookingStepViewCell", for: indexPath) as! CookingStepCollectionViewCell
+        ////            cell.setup(stepData: recipesData.analyzedInstructions.steps[indexPath.row])
+        ////            return cell
+        ////        }
+//        return UICollectionViewCell()
         let cell = detailCollectionViewField.dequeueReusableCell(withReuseIdentifier: "ingredientCollectionCell", for: indexPath) as! DetailCollectionViewCell
         cell.setup(ingredientData: recipesData?.extendedIngredients[indexPath.row])
         return cell
@@ -77,7 +86,8 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
             recipeName.text = recipesData?.title ?? ""
             briefInforText.text = "Price per Services: $\(recipesData?.pricePerServing ?? 0) || Est \(recipesData?.readyInMinutes ?? 0) Minutes ||\(recipesData?.servings ?? 0) Servings || Healthy Score:\(recipesData?.healthScore ?? 0)"
             descriptionTextField.text = recipesData?.summary ?? ""
-            detailCollectionViewField.reloadData()
+            cookingStepCollectionView.reloadData()
+            print("he")
         }
     }
 
@@ -105,6 +115,7 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
 
                 let cookingData = try decoder.decode(DetailRecipeData.self, from: data)
                 recipesData = cookingData
+                loadImage()
             } catch {
                 print(error)
             }
@@ -123,6 +134,46 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
          // Pass the selected object to the new view controller.
      }
      */
+    func loadImage() {
+        if let imageURL = URL(string: recipesData?.image ?? "") {
+            URLQueryItem(name: "apiKey", value: "baee3d6b25894651a9d3904b9fed4428")
+
+            getImage(from: imageURL)
+        } else {
+            print("Invalid image URL: \(recipesData?.image ?? "")")
+        }
+    }
+
+    func getImage(from url: URL) {
+        let session = URLSession.shared
+
+        let task = session.dataTask(with: url) { [weak self] data, _, error in
+            guard let self = self else { return }
+
+            if let error = error {
+                print("Error downloading image: \(error)")
+                return
+            }
+
+            // Ensure there's data
+            guard let imageData = data else {
+                print("No image data")
+                return
+            }
+
+            // Convert data to UIImage
+            if let image = UIImage(data: imageData) {
+                // Update UI on the main thread
+                DispatchQueue.main.async {
+                    // Set the downloaded image to the image view
+                    self.imageViewField.image = image
+                }
+            }
+        }
+
+        // Resume the task
+        task.resume()
+    }
 }
 
 class DetailCollectionViewCell: UICollectionViewCell {
@@ -133,6 +184,15 @@ class DetailCollectionViewCell: UICollectionViewCell {
         if let a = ingredientData {
             nameField.text = a.name
             unitField.text = "\(a.amount) \(a.unit ?? "")"
+        }
+    }
+}
+
+class CookingStepCollectionViewCell: UICollectionViewCell {
+    @IBOutlet var label: UILabel!
+    func setup(stepData: Step?) {
+        if let temp = stepData {
+            label.text = "\(temp.number): \(temp.step)"
         }
     }
 }
