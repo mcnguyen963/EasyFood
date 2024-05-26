@@ -126,16 +126,13 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
 }
 
 class DetailCollectionViewCell: UICollectionViewCell {
-    @IBOutlet var nameTextField: UILabel!
-    @IBOutlet var quantityTextField: UILabel!
+    @IBOutlet var nameField: UILabel!
 
-    @IBOutlet var unitTextField: UILabel!
-
+    @IBOutlet var unitField: UILabel!
     func setup(ingredientData: IngredientData?) {
         if let a = ingredientData {
-            nameTextField.text = a.name
-            quantityTextField.text = String(a.amount)
-            unitTextField.text = a.unit
+            nameField.text = a.name
+            unitField.text = "\(a.amount) \(a.unit ?? "")"
         }
     }
 }
