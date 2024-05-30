@@ -23,15 +23,14 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet var descriptionTextField: UITextView!
     @IBOutlet var recipeName: UITextView!
 
-    @IBOutlet var detailCollectionView: UICollectionView!
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         detailCollectionViewField.delegate = self
         detailCollectionViewField.dataSource = self
-//        cookingStepCollectionView.delegate = self
-//        cookingStepCollectionView.dataSource = self
+
+        cookingStepCollectionView.delegate = self
+        cookingStepCollectionView.dataSource = self
 
         indicator.style = UIActivityIndicatorView.Style.large
         indicator.translatesAutoresizingMaskIntoConstraints = false
@@ -50,35 +49,26 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
                 updatinData()
             }
         }
-
-        // Do any additional setup after loading the view.
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = view.frame.size.width
-        let height = view.frame.size.width * 1 / 40 // ratio
-        return CGSize(width: width, height: height)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return recipesData?.extendedIngredients.count ?? 0
+        if collectionView == detailCollectionViewField {
+            return recipesData?.extendedIngredients.count ?? 0
+        } else {
+            return recipesData?.analyzedInstructions[0].steps.count ?? 0
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        if collectionView == detailCollectionViewField {
-//            let cell = detailCollectionViewField.dequeueReusableCell(withReuseIdentifier: "ingredientCollectionCell", for: indexPath) as! DetailCollectionViewCell
-//            cell.setup(ingredientData: recipesData?.extendedIngredients[indexPath.row])
-//            return cell
-//        }
-        ////        if collectionView == cookingStepCollectionView {
-        ////            let cell = cookingStepCollectionView.dequeueReusableCell(withReuseIdentifier: "cookingStepViewCell", for: indexPath) as! CookingStepCollectionViewCell
-        ////            cell.setup(stepData: recipesData.analyzedInstructions.steps[indexPath.row])
-        ////            return cell
-        ////        }
-//        return UICollectionViewCell()
-        let cell = detailCollectionViewField.dequeueReusableCell(withReuseIdentifier: "ingredientCollectionCell", for: indexPath) as! DetailCollectionViewCell
-        cell.setup(ingredientData: recipesData?.extendedIngredients[indexPath.row])
-        return cell
+        if collectionView == cookingStepCollectionView {
+            let cell = cookingStepCollectionView.dequeueReusableCell(withReuseIdentifier: "cookingStepViewCell", for: indexPath) as! CookingStepCollectionViewCell
+            cell.setup(stepData: recipesData?.analyzedInstructions[0].steps[indexPath.row])
+            return cell
+        } else {
+            let cell = detailCollectionViewField.dequeueReusableCell(withReuseIdentifier: "ingredientCollectionCell", for: indexPath) as! DetailCollectionViewCell
+            cell.setup(ingredientData: recipesData?.extendedIngredients[indexPath.row])
+            return cell
+        }
     }
 
     func updatinData() {
@@ -87,7 +77,7 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
             briefInforText.text = "Price per Services: $\(recipesData?.pricePerServing ?? 0) || Est \(recipesData?.readyInMinutes ?? 0) Minutes ||\(recipesData?.servings ?? 0) Servings || Healthy Score:\(recipesData?.healthScore ?? 0)"
             descriptionTextField.text = recipesData?.summary ?? ""
             cookingStepCollectionView.reloadData()
-            print("he")
+            detailCollectionViewField.reloadData()
         }
     }
 
@@ -125,15 +115,6 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
 
-    /*
-     // MARK: - Navigation
-
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destination.
-         // Pass the selected object to the new view controller.
-     }
-     */
     func loadImage() {
         if let imageURL = URL(string: recipesData?.image ?? "") {
             URLQueryItem(name: "apiKey", value: "baee3d6b25894651a9d3904b9fed4428")

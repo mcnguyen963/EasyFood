@@ -62,8 +62,6 @@ class DetailRecipeData: NSObject, Decodable {
 
     required init(from decoder: Decoder) throws {
         let recipeContainer = try decoder.container(keyedBy: ShortRecipeKey.self)
-//        let cookingStepContainer = try recipeContainer.nestedContainer(keyedBy:
-//            CookingStepKey.self, forKey: .analyzedInstructions)
 
         title = try recipeContainer.decode(String.self, forKey: .title)
         id = try recipeContainer.decode(Int.self, forKey: .id)
@@ -77,17 +75,5 @@ class DetailRecipeData: NSObject, Decodable {
         diets = try recipeContainer.decode([String].self, forKey: .diets)
         analyzedInstructions = try recipeContainer.decode([AnalyzedInstructions].self, forKey: .analyzedInstructions)
         extendedIngredients = try recipeContainer.decode([IngredientData].self, forKey: .extendedIngredients)
-//        let instructions = try recipeContainer.decode([AnalyzedInstructions].self, forKey: .analyzedInstructions)
-
-//        analyzedInstructions = try recipeContainer.decode([CookingStep].self, forKey: .steps)
-
-//        {
-//            // Loop through array and find the ISBN13
-//            for step in steps {
-//                if step.type == "ISBN_13" {
-//                    isbn13 = code.identifier
-//                }
-//            }
-//        }
     }
 }
