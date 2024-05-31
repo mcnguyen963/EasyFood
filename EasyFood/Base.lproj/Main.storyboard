@@ -3431,14 +3431,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eW3-Mu-A2e">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eW3-Mu-A2e">
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="edr-nO-kY8">
-                                        <rect key="frame" x="0.0" y="0.0" width="430" height="1323"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="edr-nO-kY8">
+                                        <rect key="frame" x="0.0" y="0.0" width="430" height="1023"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Tsb-d6-SQ9">
-                                                <rect key="frame" x="5" y="0.0" width="420" height="1323"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Tsb-d6-SQ9">
+                                                <rect key="frame" x="5" y="0.0" width="420" height="1023"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue salad" translatesAutoresizingMaskIntoConstraints="NO" id="DAR-Mj-GmX">
                                                         <rect key="frame" x="0.0" y="0.0" width="420" height="307.33333333333331"/>
@@ -3498,9 +3498,12 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rLf-EE-5b6">
-                                                        <rect key="frame" x="0.0" y="622.33333333333337" width="420" height="500.00000000000011"/>
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rLf-EE-5b6">
+                                                        <rect key="frame" x="0.0" y="622.33333333333337" width="420" height="200"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="200" id="rFc-jK-bPH"/>
+                                                        </constraints>
                                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lC5-QX-Qw0">
                                                             <size key="itemSize" width="409" height="59"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -3551,19 +3554,19 @@
                                                             </collectionViewCell>
                                                         </cells>
                                                     </collectionView>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1v8-0i-4cP">
-                                                        <rect key="frame" x="0.0" y="1128.3333333333333" width="420" height="34.333333333333258"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1v8-0i-4cP">
+                                                        <rect key="frame" x="0.0" y="828.33333333333337" width="420" height="34.333333333333371"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="View more"/>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Cooking Steps:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bh5-f5-KHb">
-                                                        <rect key="frame" x="0.0" y="1168.6666666666667" width="420" height="20.333333333333258"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cooking Steps:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bh5-f5-KHb">
+                                                        <rect key="frame" x="0.0" y="868.66666666666663" width="420" height="20.333333333333371"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ti4-7v-Xp1">
-                                                        <rect key="frame" x="0.0" y="1195" width="420" height="128"/>
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ti4-7v-Xp1">
+                                                        <rect key="frame" x="0.0" y="895" width="420" height="128"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Ti4-7v-Xp1" secondAttribute="height" multiplier="105:32" id="TEf-5N-kfw"/>

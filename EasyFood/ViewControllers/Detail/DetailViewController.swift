@@ -49,6 +49,25 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
                 updatinData()
             }
         }
+        let layout = UICollectionViewCompositionalLayout { (_: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(300.0))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitem: item, count: 1)
+            let section = NSCollectionLayoutSection(group: group)
+            return section
+        }
+
+        detailCollectionViewField.collectionViewLayout = layout
+        cookingStepCollectionView.collectionViewLayout = layout
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == detailCollectionViewField {
+            return CGSize(width: collectionView.frame.width, height: 50) // Adjust height as per your requirement
+        } else if collectionView == cookingStepCollectionView {
+            return CGSize(width: collectionView.frame.width, height: 50) // Adjust height as per your requirement
+        }
+        return CGSize(width: collectionView.frame.width, height: 100) // Default case
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
