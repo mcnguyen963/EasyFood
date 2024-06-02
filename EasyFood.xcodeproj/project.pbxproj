@@ -15,6 +15,8 @@
 		CB34B0972BDB58CD0059A17E /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34B0962BDB58CD0059A17E /* FirebaseController.swift */; };
 		CB34B0992BDB59110059A17E /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34B0982BDB59110059A17E /* DatabaseProtocol.swift */; };
 		CB34B09B2BDB5AA90059A17E /* MulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34B09A2BDB5AA90059A17E /* MulticastDelegate.swift */; };
+		CB3C12782C0CA0C1002DC5FB /* NutritionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C12772C0CA0C1002DC5FB /* NutritionDetail.swift */; };
+		CB3C127A2C0CA43F002DC5FB /* NuitritionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C12792C0CA43F002DC5FB /* NuitritionViewController.swift */; };
 		CB7F25F42BED8AD200700F35 /* RecipeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F25F32BED8AD200700F35 /* RecipeData.swift */; };
 		CB7F25F62BED8AF900700F35 /* CookingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F25F52BED8AF900700F35 /* CookingData.swift */; };
 		CB7F25F82BED8DA100700F35 /* IngredientData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F25F72BED8DA100700F35 /* IngredientData.swift */; };
@@ -53,6 +55,8 @@
 		CB34B0962BDB58CD0059A17E /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		CB34B0982BDB59110059A17E /* DatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
 		CB34B09A2BDB5AA90059A17E /* MulticastDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulticastDelegate.swift; sourceTree = "<group>"; };
+		CB3C12772C0CA0C1002DC5FB /* NutritionDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionDetail.swift; sourceTree = "<group>"; };
+		CB3C12792C0CA43F002DC5FB /* NuitritionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NuitritionViewController.swift; sourceTree = "<group>"; };
 		CB7F25F32BED8AD200700F35 /* RecipeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeData.swift; sourceTree = "<group>"; };
 		CB7F25F52BED8AF900700F35 /* CookingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingData.swift; sourceTree = "<group>"; };
 		CB7F25F72BED8DA100700F35 /* IngredientData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientData.swift; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 				CB86081B2C0AF28600A0BA49 /* IngredientsDetailViewController.swift */,
 				CB86081D2C0C6D0900A0BA49 /* InstructionViewController.swift */,
 				CB86081F2C0C792600A0BA49 /* StepViewController.swift */,
+				CB3C12792C0CA43F002DC5FB /* NuitritionViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -148,6 +153,7 @@
 				CB7F26052BF04BCA00700F35 /* analyzedInstructionData.swift */,
 				CBBF43962C025C0B00435037 /* RecipeStorage.swift */,
 				CBBF43982C026BB700435037 /* TestViewController.swift */,
+				CB3C12772C0CA0C1002DC5FB /* NutritionDetail.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -292,6 +298,7 @@
 				CB300ACC2BF46728001B6A72 /* SearchCollectionViewCell.swift in Sources */,
 				CB34B0992BDB59110059A17E /* DatabaseProtocol.swift in Sources */,
 				CB300AC72BF45A38001B6A72 /* HomepageCollectionViewCell.swift in Sources */,
+				CB3C127A2C0CA43F002DC5FB /* NuitritionViewController.swift in Sources */,
 				CB7F25FC2BEDA4C400700F35 /* ShortRecipeData.swift in Sources */,
 				CB8234E72BE4B66500465B31 /* MainViewController.swift in Sources */,
 				CBDD9EA62BA7EA14001AFC33 /* ViewController.swift in Sources */,
@@ -304,6 +311,7 @@
 				CBBF43992C026BB700435037 /* TestViewController.swift in Sources */,
 				CB34B0972BDB58CD0059A17E /* FirebaseController.swift in Sources */,
 				CBDD9EA22BA7EA14001AFC33 /* AppDelegate.swift in Sources */,
+				CB3C12782C0CA0C1002DC5FB /* NutritionDetail.swift in Sources */,
 				CBBF43952C02577300435037 /* EasyfoodModel.xcdatamodeld in Sources */,
 				CBDD9EA42BA7EA14001AFC33 /* SceneDelegate.swift in Sources */,
 				CB7F26042BF0484300700F35 /* DetailRecipeData.swift in Sources */,

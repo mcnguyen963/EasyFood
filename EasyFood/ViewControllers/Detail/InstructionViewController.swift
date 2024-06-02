@@ -7,7 +7,7 @@
 
 import UIKit
 
-class InstructionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class InstructionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet var instructionCollectionView: UICollectionView!
     var instructionList: [Step]?
     var selectedStep: Step?
@@ -15,20 +15,20 @@ class InstructionViewController: UIViewController, UICollectionViewDataSource, U
         super.viewDidLoad()
         self.instructionCollectionView.delegate = self
         self.instructionCollectionView.dataSource = self
-
+        self.setCollectionViewLayout(collectionView: self.instructionCollectionView, factionWidth: 1.0)
         // Do any additional setup after loading the view.
     }
 
-//    func setCollectionViewLayout(collectionView: UICollectionView, factionWidth: CGFloat) {
-//        let layout = UICollectionViewCompositionalLayout { (_: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-//            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(factionWidth), heightDimension: .estimated(1))
-//            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-//            let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitem: item, count: 1)
-//            let section = NSCollectionLayoutSection(group: group)
-//            return section
-//        }
-//        collectionView.collectionViewLayout = layout
-//    }
+    func setCollectionViewLayout(collectionView: UICollectionView, factionWidth: CGFloat) {
+        let layout = UICollectionViewCompositionalLayout { (_: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(factionWidth), heightDimension: .estimated(1))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitem: item, count: 1)
+            let section = NSCollectionLayoutSection(group: group)
+            return section
+        }
+        collectionView.collectionViewLayout = layout
+    }
 
     func updatinData() {
         if self.instructionList != nil {
@@ -82,6 +82,7 @@ class InstructionDetailCell: UICollectionViewCell {
         if let temp = stepData {
             self.stepIndex.text = String(temp.number)
             self.stepDescription.text = temp.step
+            self.stepDescription.isUserInteractionEnabled = false
         }
     }
 }

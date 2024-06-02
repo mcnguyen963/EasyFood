@@ -2521,7 +2521,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="09O-Tn-P48" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10876.744186046511" y="864.59227467811161"/>
+            <point key="canvasLocation" x="6794" y="1257"/>
         </scene>
         <!--Receipes Details-->
         <scene sceneID="7bu-Wh-UUw">
@@ -2621,7 +2621,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o4X-2I-X6p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8071" y="1199"/>
+            <point key="canvasLocation" x="9807" y="1644"/>
         </scene>
         <!--Receipes Details-->
         <scene sceneID="URz-t1-crY">
@@ -3367,6 +3367,25 @@
             </objects>
             <point key="canvasLocation" x="5007.9069767441861" y="1149.7854077253219"/>
         </scene>
+        <!--Nuitrition Information-->
+        <scene sceneID="Ye8-45-mHE">
+            <objects>
+                <viewController id="EwP-w8-KUQ" customClass="NuitritionViewController" customModule="EasyFood" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0ei-4P-aSP"/>
+                        <viewControllerLayoutGuide type="bottom" id="ECb-6B-Zx4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aZE-M2-e21">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Nuitrition Information" id="ZGc-Gq-5tl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t5v-wo-8f2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5817" y="1300"/>
+        </scene>
         <!--Search-->
         <scene sceneID="0An-xv-oAL">
             <objects>
@@ -3399,13 +3418,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eW3-Mu-A2e">
-                                <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="932.00000000000011"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="edr-nO-kY8">
-                                        <rect key="frame" x="0.0" y="0.0" width="430" height="1063.3333333333333"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="430" height="1149.6666666666667"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Tsb-d6-SQ9">
-                                                <rect key="frame" x="5" y="0.0" width="420" height="1063.3333333333333"/>
+                                                <rect key="frame" x="5" y="0.0" width="420" height="1149.6666666666667"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue salad" translatesAutoresizingMaskIntoConstraints="NO" id="DAR-Mj-GmX">
                                                         <rect key="frame" x="0.0" y="0.0" width="420" height="307.33333333333331"/>
@@ -3595,6 +3614,22 @@
                                                         <connections>
                                                             <segue destination="Nl4-fO-pno" kind="show" identifier="toInstructionDetailSegue" id="qg9-cC-eO1"/>
                                                         </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0A-gy-l0L">
+                                                        <rect key="frame" x="0.0" y="1069.3333333333333" width="420" height="34.333333333333258"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="View Nuitrition Information"/>
+                                                        <connections>
+                                                            <segue destination="EwP-w8-KUQ" kind="show" identifier="toNuitritionDetailSegue" id="PEx-iS-mxb"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yfs-Ue-8rW">
+                                                        <rect key="frame" x="0.0" y="1109.6666666666667" width="420" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="X9F-1L-PcM"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Add to Planner"/>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -3828,17 +3863,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVW-K6-ehw">
-                                                    <rect key="frame" x="10" y="9.9999999999999982" width="30" height="20.333333333333329"/>
+                                                    <rect key="frame" x="10" y="9.9999999999999982" width="15" height="20.333333333333329"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20.329999999999998" id="0Hr-lu-Y4A"/>
-                                                        <constraint firstAttribute="width" constant="30" id="wqR-Q3-lBz"/>
+                                                        <constraint firstAttribute="width" constant="15" id="wqR-Q3-lBz"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="51H-QH-v5c">
-                                                    <rect key="frame" x="45" y="5" width="315" height="91"/>
+                                                    <rect key="frame" x="30" y="3" width="330" height="93"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="PXQ-uS-HpJ"/>
@@ -3851,7 +3886,7 @@
                                                 </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="51H-QH-v5c" firstAttribute="top" secondItem="MRL-ba-dOF" secondAttribute="top" constant="5" id="1g6-OI-4WH"/>
+                                                <constraint firstItem="51H-QH-v5c" firstAttribute="top" secondItem="MRL-ba-dOF" secondAttribute="top" constant="3" id="1g6-OI-4WH"/>
                                                 <constraint firstItem="xVW-K6-ehw" firstAttribute="top" secondItem="MRL-ba-dOF" secondAttribute="top" constant="10" id="A2v-JI-L0G"/>
                                                 <constraint firstAttribute="trailing" secondItem="51H-QH-v5c" secondAttribute="trailing" constant="10" id="M8t-eo-4Fc"/>
                                                 <constraint firstAttribute="bottom" secondItem="51H-QH-v5c" secondAttribute="bottom" constant="5" id="dQF-g8-h1r"/>
@@ -3892,7 +3927,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BkO-JT-yGc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6546.9767441860467" y="1198.7124463519315"/>
+            <point key="canvasLocation" x="7584" y="1199"/>
         </scene>
         <!--  Step Detail-->
         <scene sceneID="Y2A-ok-dpW">
@@ -3919,7 +3954,7 @@
                                 <rect key="frame" x="30" y="138" width="370" height="150"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="QYT-hF-ojm"/>
+                                    <constraint firstAttribute="height" constant="150" id="Dyk-T7-Qug"/>
                                 </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -4079,7 +4114,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J54-VC-BeE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7257" y="1205"/>
+            <point key="canvasLocation" x="8355" y="1199"/>
         </scene>
         <!--Saved Recipes-->
         <scene sceneID="F2E-tq-Qk0">

@@ -196,6 +196,10 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
             let destination = segue.destination as! InstructionViewController
             destination.instructionList = recipesData?.analyzedInstructions[0].steps
         }
+        if segue.identifier == "toNuitritionDetailSegue" {
+            let destination = segue.destination as! NuitritionViewController
+            destination.recipeID = recipesID
+        }
     }
 }
 
