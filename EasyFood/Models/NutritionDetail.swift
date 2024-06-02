@@ -12,6 +12,26 @@ struct Nutrition: Decodable {
     var amount: Float
     var unit: String
     var percentOfDailyNeeds: Float
+    func amountInGrams() -> Float {
+        switch unit {
+        case "mg":
+            return amount / 1000
+        case "kg":
+            return amount*1000
+        case "g", "gram", "grams":
+            return amount
+        case "kcal":
+            return amount*0.129598
+        case "cal":
+            return amount*0.129598*0.001
+        case "µg":
+            return amount / 1000000
+        case "IU":
+            return amount*0.67 / 1000
+        default:
+            return amount
+        }
+    }
 }
 
 struct Property: Decodable {

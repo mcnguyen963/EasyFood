@@ -69,6 +69,10 @@ class NuitritionViewController: UIViewController {
             print(error)
         }
     }
+
+    func updataData() {
+        v
+    }
     /*
      // MARK: - Navigation
 
