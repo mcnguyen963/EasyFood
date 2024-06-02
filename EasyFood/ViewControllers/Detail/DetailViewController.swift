@@ -49,25 +49,30 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
                 updatinData()
             }
         }
+        setCollectionViewLayout(collectionView: detailCollectionViewField, height: 300.0, factionWidth: 1.0)
+        setCollectionViewLayout(collectionView: cookingStepCollectionView, height: 300.0, factionWidth: 1.0)
+        cookingStepCollectionView.isScrollEnabled = false
+        detailCollectionViewField.isScrollEnabled = false
+    }
+
+    func setCollectionViewLayout(collectionView: UICollectionView, height: CGFloat, factionWidth: CGFloat) {
         let layout = UICollectionViewCompositionalLayout { (_: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(300.0))
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(factionWidth), heightDimension: .estimated(height))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitem: item, count: 1)
             let section = NSCollectionLayoutSection(group: group)
             return section
         }
-
-        detailCollectionViewField.collectionViewLayout = layout
-        cookingStepCollectionView.collectionViewLayout = layout
+        collectionView.collectionViewLayout = layout
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == detailCollectionViewField {
-            return CGSize(width: collectionView.frame.width, height: 50) // Adjust height as per your requirement
+            return CGSize(width: collectionView.frame.width, height: 50)
         } else if collectionView == cookingStepCollectionView {
-            return CGSize(width: collectionView.frame.width, height: 50) // Adjust height as per your requirement
+            return CGSize(width: collectionView.frame.width, height: 50)
         }
-        return CGSize(width: collectionView.frame.width, height: 100) // Default case
+        return CGSize(width: collectionView.frame.width, height: 100)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -114,13 +119,17 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
 
         let urlRequest = URLRequest(url: requestURL)
-        print(urlRequest)
         do {
             let (data, _) =
                 try await URLSession.shared.data(for: urlRequest)
             indicator.stopAnimating()
             do {
                 let decoder = JSONDecoder()
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    print(jsonString)
+                } else {
+                    print("Failed to convert data to string.")
+                }
 
                 let cookingData = try decoder.decode(DetailRecipeData.self, from: data)
                 recipesData = cookingData
@@ -173,6 +182,16 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
 
         // Resume the task
         task.resume()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "toIngredientDetailSegue" {
+            let destination = segue.destination as! IngredientsDetailViewController
+            destination.numberOfServing = recipesData?.servings ?? 0
+            destination.ingredientList = recipesData?.extendedIngredients
+        }
     }
 }
 
