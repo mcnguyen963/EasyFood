@@ -23,6 +23,7 @@
 		CB7F26062BF04BCA00700F35 /* analyzedInstructionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F26052BF04BCA00700F35 /* analyzedInstructionData.swift */; };
 		CB8234E72BE4B66500465B31 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8234E62BE4B66500465B31 /* MainViewController.swift */; };
 		CB86081C2C0AF28600A0BA49 /* IngredientsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB86081B2C0AF28600A0BA49 /* IngredientsDetailViewController.swift */; };
+		CB86081E2C0C6D0900A0BA49 /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB86081D2C0C6D0900A0BA49 /* InstructionViewController.swift */; };
 		CB8A31972C038DBE00BCBF69 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A31962C038DBE00BCBF69 /* SavedViewController.swift */; };
 		CBBF43952C02577300435037 /* EasyfoodModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CBBF43932C02577300435037 /* EasyfoodModel.xcdatamodeld */; };
 		CBBF43972C025C0B00435037 /* RecipeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBF43962C025C0B00435037 /* RecipeStorage.swift */; };
@@ -59,6 +60,7 @@
 		CB7F26052BF04BCA00700F35 /* analyzedInstructionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = analyzedInstructionData.swift; sourceTree = "<group>"; };
 		CB8234E62BE4B66500465B31 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		CB86081B2C0AF28600A0BA49 /* IngredientsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsDetailViewController.swift; sourceTree = "<group>"; };
+		CB86081D2C0C6D0900A0BA49 /* InstructionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
 		CB8A31962C038DBE00BCBF69 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
 		CBBF43942C02577300435037 /* EasyfoodModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EasyfoodModel.xcdatamodel; sourceTree = "<group>"; };
 		CBBF43962C025C0B00435037 /* RecipeStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeStorage.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			children = (
 				CB300ACE2BF63CA2001B6A72 /* DetailViewController.swift */,
 				CB86081B2C0AF28600A0BA49 /* IngredientsDetailViewController.swift */,
+				CB86081D2C0C6D0900A0BA49 /* InstructionViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				CB8A31972C038DBE00BCBF69 /* SavedViewController.swift in Sources */,
 				CBBF43972C025C0B00435037 /* RecipeStorage.swift in Sources */,
 				CB7F25F82BED8DA100700F35 /* IngredientData.swift in Sources */,
+				CB86081E2C0C6D0900A0BA49 /* InstructionViewController.swift in Sources */,
 				CBBF43992C026BB700435037 /* TestViewController.swift in Sources */,
 				CB34B0972BDB58CD0059A17E /* FirebaseController.swift in Sources */,
 				CBDD9EA22BA7EA14001AFC33 /* AppDelegate.swift in Sources */,

@@ -60,4 +60,8 @@ class RecipeStorage: NSObject {
         }
         return false
     }
+
+    static func removeAllSaved() {
+        saveRecipes([], forKey: "SAVED_RECIPES_KEY")
+    }
 }

@@ -20,6 +20,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
     var savedRecipes: [ShortRecipeData] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        RecipeStorage.removeAllSaved()
         homeCollectionView.dataSource = self
         homeCollectionView.delegate = self
         indicator.style = UIActivityIndicatorView.Style.large
@@ -32,7 +33,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
                 view.safeAreaLayoutGuide.centerYAnchor),
         ])
         savedRecipes = RecipeStorage.loadRecipes(forKey: "SAVED_RECIPES_KEY") ?? []
-        //        getRecipesTest()
+        
         Task {
             currentRequestIndex = 0
             await requestRecipeNamed("Chicken")
@@ -54,10 +55,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = homeCollectionView.dequeueReusableCell(withReuseIdentifier: "homepageCollectionCell", for: indexPath) as! HomepageCollectionViewCell
-        cell.setup(with: recipes[indexPath.row])
         if savedRecipes.contains(recipes[indexPath.row]) {
             recipes[indexPath.row].isSaved = true
         }
+        cell.setup(with: recipes[indexPath.row])
+
         return cell
     }
     
@@ -90,7 +92,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
                 
                 if let recipe = cookingData.results {
                     recipes.append(contentsOf: recipe)
-                    RecipeStorage.saveRecipes(recipes, forKey: SAVED_RECIPES_KEY)
                     
                     homeCollectionView.reloadData()
                     if recipes.count == MAX_ITEMS_PER_REQUEST,

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SavedViewController: UIViewController, UICollectionViewDelegate {
+class SavedViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet var collectionViewField: UICollectionView!
 
     var recipes = [ShortRecipeData]()
@@ -16,9 +16,21 @@ class SavedViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionViewField.delegate = self
-
+        collectionViewField.dataSource = self
         getRecipesTest()
-        // Do any additional setup after loading the view.
+        var totalHeight = CGFloat(50.0 * Double(recipes.count))
+        setCollectionViewLayout(collectionView: collectionViewField, height: totalHeight, factionWidth: 1.0)
+    }
+
+    func setCollectionViewLayout(collectionView: UICollectionView, height: CGFloat, factionWidth: CGFloat) {
+        let layout = UICollectionViewCompositionalLayout { (_: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(factionWidth), heightDimension: .estimated(height))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitem: item, count: 1)
+            let section = NSCollectionLayoutSection(group: group)
+            return section
+        }
+        collectionView.collectionViewLayout = layout
     }
 
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
@@ -31,8 +43,6 @@ class SavedViewController: UIViewController, UICollectionViewDelegate {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
         if segue.identifier == "toDetailSegue" {
             let destination = segue.destination as! DetailViewController
             destination.recipesID = onSelectID
@@ -46,7 +56,11 @@ class SavedViewController: UIViewController, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionViewField.dequeueReusableCell(withReuseIdentifier: "saveViewCell", for: indexPath) as! SaveCollectionViewCell
 
+        if recipes.contains(recipes[indexPath.row]) {
+            recipes[indexPath.row].isSaved = true
+        }
         cell.setup(with: recipes[indexPath.row])
+
         return cell
     }
 
