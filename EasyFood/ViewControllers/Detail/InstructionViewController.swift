@@ -10,6 +10,7 @@ import UIKit
 class InstructionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet var instructionCollectionView: UICollectionView!
     var instructionList: [Step]?
+    var selectedStep: Step?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.instructionCollectionView.delegate = self
@@ -42,27 +43,35 @@ class InstructionViewController: UIViewController, UICollectionViewDataSource, U
         return 0
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.selectedStep = self.instructionList?[indexPath.row]
+        performSegue(withIdentifier: "toStepDetailSegue", sender: self)
+    }
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.instructionCollectionView {
             let cell = self.instructionCollectionView.dequeueReusableCell(withReuseIdentifier: "instructionDetailCell", for: indexPath) as! InstructionDetailCell
 
             if let instructionList = self.instructionList {
                 cell.setup(stepData: instructionList[indexPath.row])
-                return cell
             }
+            return cell
         }
         return UICollectionViewCell()
     }
 
-    /*
-     // MARK: - Navigation
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destination.
-         // Pass the selected object to the new view controller.
-     }
-     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "toStepDetailSegue" {
+            let destination = segue.destination as! StepViewController
+            destination.stepDetail = self.selectedStep
+        }
+    }
 }
 
 class InstructionDetailCell: UICollectionViewCell {
@@ -75,6 +84,4 @@ class InstructionDetailCell: UICollectionViewCell {
             self.stepDescription.text = temp.step
         }
     }
-
-    @IBAction func ViewDetail(_ sender: Any) {}
 }
