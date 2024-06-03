@@ -65,7 +65,7 @@ class SavedViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
 
     func getRecipesTest() {
-        recipes = RecipeStorage.loadRecipes(forKey: SAVED_RECIPES_KEY) ?? []
+        recipes = RecipeStorage.loadRecipes(forKey: "SAVED_RECIPES_KEY") ?? []
         collectionViewField.reloadData()
     }
 

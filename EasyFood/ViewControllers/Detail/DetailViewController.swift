@@ -145,8 +145,6 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
 
     func loadImage() {
         if let imageURL = URL(string: recipesData?.image ?? "") {
-            URLQueryItem(name: "apiKey", value: "baee3d6b25894651a9d3904b9fed4428")
-
             getImage(from: imageURL)
         } else {
             print("Invalid image URL: \(recipesData?.image ?? "")")

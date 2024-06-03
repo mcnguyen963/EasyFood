@@ -11,6 +11,7 @@ class InstructionViewController: UIViewController, UICollectionViewDataSource, U
     @IBOutlet var instructionCollectionView: UICollectionView!
     var instructionList: [Step]?
     var selectedStep: Step?
+    var selectedIndex: Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.instructionCollectionView.delegate = self
@@ -45,6 +46,7 @@ class InstructionViewController: UIViewController, UICollectionViewDataSource, U
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.selectedStep = self.instructionList?[indexPath.row]
+        self.selectedIndex = indexPath.row
         performSegue(withIdentifier: "toStepDetailSegue", sender: self)
     }
 
@@ -70,6 +72,8 @@ class InstructionViewController: UIViewController, UICollectionViewDataSource, U
         if segue.identifier == "toStepDetailSegue" {
             let destination = segue.destination as! StepViewController
             destination.stepDetail = self.selectedStep
+            destination.selectedStepIndex = self.selectedIndex
+            destination.stepList = self.instructionList
         }
     }
 }
@@ -80,7 +84,7 @@ class InstructionDetailCell: UICollectionViewCell {
     @IBOutlet var stepDescription: UITextView!
     func setup(stepData: Step?) {
         if let temp = stepData {
-            self.stepIndex.text = String(temp.number)
+            self.stepIndex.text = "Step \(temp.number):"
             self.stepDescription.text = temp.step
             self.stepDescription.isUserInteractionEnabled = false
         }

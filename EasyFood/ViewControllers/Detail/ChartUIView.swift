@@ -20,9 +20,36 @@ struct ChartUIView: View {
     @State private var selectedSegment = 0
     var body: some View {
         if #available(iOS 17.0, *) {
-            Chart(data) { d in
-                SectorMark(angle: .value("Amount", d.amountInGrams()))
-                    .foregroundStyle(by: .value("Name", d.name))
+            VStack {
+                Picker("View", selection: $selectedSegment) {
+                    Text("Detail List").tag(0)
+                    Text("Pie Chart").tag(1)
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                switch selectedSegment {
+                case 0:
+                    Text("Nutrition Detail")
+                        .font(.title3)
+                        .padding()
+                    List(data, id: \.id) { nutrient in
+                        VStack(alignment: .leading) {
+                            Text(nutrient.name)
+                                .font(.headline)
+                            Text("Amount: \(nutrient.amount) \(nutrient.unit)")
+                            Text("Percent of Daily Needs: \(nutrient.percentOfDailyNeeds)")
+                        }
+                    }
+                case 1:
+                    Text("Nutrition Chart Per Serving Percentage in Gram:")
+                        .font(.title3)
+                        .padding()
+                    Chart(data) { d in
+                        SectorMark(angle: .value("Amount", d.amountInGrams()))
+                            .foregroundStyle(by: .value("Name", d.name))
+                    }
+                default:
+                    EmptyView()
+                }
             }
         }
     }

@@ -45,10 +45,12 @@ class RecipeStorage: NSObject {
 
     static func removeRecipe(_ recipe: ShortRecipeData, forKey key: String) {
         var recipes = loadRecipes(forKey: key) ?? []
-        if let index = recipes.firstIndex(of: recipe) {
-            recipes.remove(at: index)
-            saveRecipes(recipes, forKey: key)
+
+        if let deleteIndex = recipes.firstIndex(where: { $0.id == recipe.id }) {
+            recipes.remove(at: deleteIndex)
         }
+
+        saveRecipes(recipes, forKey: key)
     }
 
     static func isStoredRecipes(recipe: ShortRecipeData, forKey key: String) -> Bool {

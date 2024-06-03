@@ -11,10 +11,15 @@ class StepViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet var ingredientCollectionView: UICollectionView!
 
     @IBOutlet var stepIndex: UILabel!
-    
-    @IBOutlet weak var stepDescription: UITextView!
+
+    @IBOutlet var stepDescription: UITextView!
     @IBOutlet var equipmentCollectionView: UICollectionView!
+
+    @IBOutlet var nextStepButton: UIBarButtonItem!
     var stepDetail: Step?
+    var selectedStepIndex: Int?
+    var stepList: [Step]?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         ingredientCollectionView.delegate = self
@@ -23,11 +28,25 @@ class StepViewController: UIViewController, UICollectionViewDataSource, UICollec
         equipmentCollectionView.delegate = self
         equipmentCollectionView.dataSource = self
         // Do any additional setup after loading the view.
-        guard let temp = stepDetail else {
+        updateData()
+    }
+
+    func updateData() {
+        guard let tempIndex = selectedStepIndex else {
             return
         }
-        stepIndex.text = "Step \(temp.number):"
-        stepDescription.text = temp.step ?? ""
+        guard let tempList = stepList else {
+            return
+        }
+        if tempIndex > tempList.count - 2 {
+            nextStepButton.isHidden = true
+        }
+
+        stepIndex.text = "Step \(tempList[tempIndex].number):"
+        stepDescription.text = tempList[tempIndex].step
+        stepDetail = tempList[tempIndex]
+        ingredientCollectionView.reloadData()
+        equipmentCollectionView.reloadData()
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -59,6 +78,15 @@ class StepViewController: UIViewController, UICollectionViewDataSource, UICollec
             return cell
         }
         return UICollectionViewCell()
+    }
+
+    @IBAction func nextStepAction(_ sender: Any) {
+        let temp = selectedStepIndex ?? 0
+        let tempListCount = stepList?.count ?? 0
+        if temp+1 <= tempListCount - 1 {
+            selectedStepIndex = temp+1
+            updateData()
+        }
     }
 }
 

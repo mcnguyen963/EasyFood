@@ -8,7 +8,7 @@
 import UIKit
 
 let SAVED_RECIPES_KEY = "SAVED_RECIPES_KEY"
-class HomeViewController: UIViewController, UICollectionViewDataSource, UISearchBarDelegate, UICollectionViewDelegate {
+class HomeViewController: UIViewController, UICollectionViewDataSource, UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet var homeCollectionView: UICollectionView!
     let REQUEST_STRING = "https://api.spoonacular.com/recipes/random"
     let MAX_ITEMS_PER_REQUEST = 40
@@ -20,7 +20,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
     var savedRecipes: [ShortRecipeData] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        RecipeStorage.removeAllSaved()
         homeCollectionView.dataSource = self
         homeCollectionView.delegate = self
         indicator.style = UIActivityIndicatorView.Style.large
@@ -37,9 +36,22 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
         Task {
             currentRequestIndex = 0
             await requestRecipeNamed("Chicken")
+            var totalHeight = CGFloat(300)
+            self.setCollectionViewLayout(collectionView: self.homeCollectionView, height: totalHeight, factionWidth: 1.0)
         }
     }
-    
+
+    func setCollectionViewLayout(collectionView: UICollectionView, height: CGFloat, factionWidth: CGFloat) {
+        let layout = UICollectionViewCompositionalLayout { (_: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(factionWidth), heightDimension: .estimated(height))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitem: item, count: 1)
+            let section = NSCollectionLayoutSection(group: group)
+            return section
+        }
+        collectionView.collectionViewLayout = layout
+    }
+
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -55,9 +67,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = homeCollectionView.dequeueReusableCell(withReuseIdentifier: "homepageCollectionCell", for: indexPath) as! HomepageCollectionViewCell
-        if savedRecipes.contains(recipes[indexPath.row]) {
-            recipes[indexPath.row].isSaved = true
-        }
+  
         cell.setup(with: recipes[indexPath.row])
 
         return cell
@@ -124,12 +134,19 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
     }
     
     func didTapSaveButton(recipes: ShortRecipeData) {
-        if !recipes.isSaved {
-            recipes.isSaved = true
-            RecipeStorage.addRecipe(recipe: recipes, forKey: "SAVED_RECIPES_KEY")
-        } else {
-            recipes.isSaved = false
-            RecipeStorage.removeRecipe(recipes, forKey: "SAVED_RECIPES_KEY")
+        if let index = self.recipes.firstIndex(where: { $0.id == recipes.id }) {
+            if !self.recipes[index].isSaved {
+                self.recipes[index].isSaved = true
+                RecipeStorage.addRecipe(recipe: recipes, forKey: "SAVED_RECIPES_KEY")
+                self.recipes.append(self.recipes[index])
+            } else {
+                RecipeStorage.removeRecipe(recipes, forKey: "SAVED_RECIPES_KEY")
+
+                self.recipes[index].isSaved = false
+                if let savedIndex = savedRecipes.firstIndex(where: { $0.id == recipes.id }) {
+                    savedRecipes.remove(at: savedIndex)
+                }
+            }
         }
     }
     
@@ -138,7 +155,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
         if let indexPath = homeCollectionView.indexPathForItem(at: buttonPosition) {
             let recipe = recipes[indexPath.row]
             didTapSaveButton(recipes: recipe)
-            homeCollectionView.reloadItems(at: [indexPath])
+            homeCollectionView.reloadData()
         }
     }
 }
