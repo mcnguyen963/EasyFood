@@ -7,11 +7,27 @@
 
 import UIKit
 
-struct Nutrition: Decodable {
+struct Nutrition: Decodable, Identifiable {
+    var id: UUID = .init()
     var name: String
     var amount: Float
     var unit: String
     var percentOfDailyNeeds: Float
+    enum CodingKeys: String, CodingKey {
+        case name
+        case amount
+        case unit
+        case percentOfDailyNeeds
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decode(String.self, forKey: .name)
+        amount = try container.decode(Float.self, forKey: .amount)
+        unit = try container.decode(String.self, forKey: .unit)
+        percentOfDailyNeeds = try container.decode(Float.self, forKey: .percentOfDailyNeeds)
+    }
+
     func amountInGrams() -> Float {
         switch unit {
         case "mg":

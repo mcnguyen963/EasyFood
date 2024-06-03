@@ -6,13 +6,14 @@
 //
 
 import Charts
+import SwiftUI
 import UIKit
 
 class NuitritionViewController: UIViewController {
     var recipeID: Int?
     var nuitritionData: NutritionDetail?
     var indicator = UIActivityIndicatorView()
-
+    var chartController: UIHostingController<ChartUIView>?
     override func viewDidLoad() {
         super.viewDidLoad()
         indicator.style = UIActivityIndicatorView.Style.large
@@ -30,7 +31,24 @@ class NuitritionViewController: UIViewController {
                 await getNuitritionData(id: recipeID ?? 0)
             }
         }
-        // Do any additional setup after loading the view.
+        //        Do any additional setup after loading the view.
+
+        let controller = UIHostingController(rootView: ChartUIView())
+        guard let chartView = controller.view else {
+            return
+        }
+        view.addSubview(chartView)
+        addChild(controller)
+        chartView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            chartView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 12.0),
+            chartView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -12.0),
+            chartView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12.0),
+            chartView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12.0),
+        ])
+
+        chartController = controller
     }
 
     func getNuitritionData(id: Int) async {
@@ -53,14 +71,9 @@ class NuitritionViewController: UIViewController {
             indicator.stopAnimating()
             do {
                 let decoder = JSONDecoder()
-                if let jsonString = String(data: data, encoding: .utf8) {
-                    print(jsonString)
-                } else {
-                    print("Failed to convert data to string.")
-                }
-
                 let nuitTritionInfor = try decoder.decode(NutritionDetail.self, from: data)
                 nuitritionData = nuitTritionInfor
+                updataData()
             } catch {
                 print(error)
             }
@@ -71,7 +84,8 @@ class NuitritionViewController: UIViewController {
     }
 
     func updataData() {
-        v
+        var n = nuitritionData
+        chartController?.rootView.setData(nuitritionList: nuitritionData?.nutrients ?? [])
     }
     /*
      // MARK: - Navigation
