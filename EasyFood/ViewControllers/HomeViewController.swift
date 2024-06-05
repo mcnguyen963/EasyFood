@@ -129,10 +129,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
         }
     }
     
-    func getRecipesTest() {
-        recipes = RecipeStorage.loadRecipes(forKey: SAVED_RECIPES_KEY) ?? []
-    }
-    
     func didTapSaveButton(recipes: ShortRecipeData) {
         if let index = self.recipes.firstIndex(where: { $0.id == recipes.id }) {
             if !self.recipes[index].isSaved {

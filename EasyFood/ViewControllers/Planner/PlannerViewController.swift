@@ -8,26 +8,26 @@
 import UIKit
 
 class PlannerViewController: UIViewController {
-    @IBOutlet var IngredientsView: UIView!
+    @IBOutlet var PlannedMealView: UIView!
 
-    @IBOutlet var MealsView: UIView!
+    @IBOutlet var ShoppingChecklistView: UIView!
+    var selectedId: Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        IngredientsView.alpha = 1
-        MealsView.alpha = 0
-        // Do any additional setup after loading the view.
+        PlannedMealView.alpha = 0
+        ShoppingChecklistView.alpha = 1
     }
 
     @IBAction func switchView(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 1 {
-            IngredientsView.reloadInputViews()
-            IngredientsView.alpha = 1
-            MealsView.alpha = 0
+            PlannedMealView.reloadInputViews()
+            PlannedMealView.alpha = 1
+            ShoppingChecklistView.alpha = 0
         } else {
-            IngredientsView.reloadInputViews()
+            PlannedMealView.reloadInputViews()
 
-            IngredientsView.alpha = 0
-            MealsView.alpha = 1
+            PlannedMealView.alpha = 0
+            ShoppingChecklistView.alpha = 1
         }
     }
 
