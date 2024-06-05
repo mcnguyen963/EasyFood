@@ -12,7 +12,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UISearch
     @IBOutlet var homeCollectionView: UICollectionView!
     let REQUEST_STRING = "https://api.spoonacular.com/recipes/random"
     let MAX_ITEMS_PER_REQUEST = 40
-    let MAX_REQUESTS = 10
+    let MAX_REQUESTS = 5
     var currentRequestIndex: Int = 0
     var recipes = [ShortRecipeData]()
     var indicator = UIActivityIndicatorView()

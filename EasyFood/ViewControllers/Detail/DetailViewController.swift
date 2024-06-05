@@ -23,6 +23,8 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet var descriptionTextField: UITextView!
     @IBOutlet var recipeName: UITextView!
 
+    @IBOutlet var addtoPlannerButton: UIButton!
+    var isInPlanner: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -102,6 +104,15 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
             descriptionTextField.text = recipesData?.summary ?? ""
             cookingStepCollectionView.reloadData()
             detailCollectionViewField.reloadData()
+            if let temp: DetailRecipeData = recipesData {
+                if RecipeStorage.isInPlannerRecipes(recipe: temp) {
+                    isInPlanner = true
+                    addtoPlannerButton.setTitle("Remove from Planner", for: .normal)
+                } else {
+                    isInPlanner = false
+                    addtoPlannerButton.setTitle("Add To Planner", for: .normal)
+                }
+            }
         }
     }
 
@@ -197,6 +208,35 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         if segue.identifier == "toNuitritionDetailSegue" {
             let destination = segue.destination as! NuitritionViewController
             destination.recipeID = recipesID
+        }
+    }
+
+    @IBAction func addRecipeToPlanner(_ sender: Any) {
+        if isInPlanner {
+            if let temp = recipesData {
+                RecipeStorage.removePlannerRecipe(temp)
+                isInPlanner = false
+                let alertController = UIAlertController(title: "Success", message: "Recipe removed successfully!", preferredStyle: .alert)
+
+                alertController.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+                    self.navigationController?.popViewController(animated: true)
+                })
+
+                present(alertController, animated: true, completion: nil)
+            }
+        } else {
+            if let temp = recipesData {
+                RecipeStorage.addPlannerRecipe(recipe: temp)
+                isInPlanner = true
+
+                let alertController = UIAlertController(title: "Success", message: "Recipe added successfully!", preferredStyle: .alert)
+
+                alertController.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+                    self.navigationController?.popViewController(animated: true)
+                })
+
+                present(alertController, animated: true, completion: nil)
+            }
         }
     }
 }

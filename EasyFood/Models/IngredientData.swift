@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IngredientData: NSObject, Decodable {
+class IngredientData: NSObject, Codable {
     var id: Int
     var aisle: String
     var name: String

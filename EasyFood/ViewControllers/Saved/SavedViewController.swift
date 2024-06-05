@@ -12,14 +12,21 @@ class SavedViewController: UIViewController, UICollectionViewDelegate, UICollect
 
     var recipes = [ShortRecipeData]()
     var onSelectID: Int?
+    let refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionViewField.delegate = self
         collectionViewField.dataSource = self
         getRecipesTest()
-        var totalHeight = CGFloat(50.0 * Double(recipes.count))
-        setCollectionViewLayout(collectionView: collectionViewField, height: totalHeight, factionWidth: 1.0)
+
+        collectionViewField.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+    }
+
+    @objc private func refreshData(_ sender: Any) {
+        getRecipesTest()
+        refreshControl.endRefreshing()
     }
 
     func setCollectionViewLayout(collectionView: UICollectionView, height: CGFloat, factionWidth: CGFloat) {
@@ -66,18 +73,26 @@ class SavedViewController: UIViewController, UICollectionViewDelegate, UICollect
 
     func getRecipesTest() {
         recipes = RecipeStorage.loadRecipes(forKey: "SAVED_RECIPES_KEY") ?? []
+        var totalHeight = CGFloat(50.0 * Double(recipes.count))
+        setCollectionViewLayout(collectionView: collectionViewField, height: totalHeight, factionWidth: 1.0)
         collectionViewField.reloadData()
     }
 
     func didTapSaveButton(recipes: ShortRecipeData) {
-        if !recipes.isSaved {
-            recipes.isSaved = true
-            RecipeStorage.addRecipe(recipe: recipes, forKey: "SAVED_RECIPES_KEY")
-        } else {
-            recipes.isSaved = false
-            RecipeStorage.removeRecipe(recipes, forKey: "SAVED_RECIPES_KEY")
+        if let index = self.recipes.firstIndex(where: { $0.id == recipes.id }) {
+            if !self.recipes[index].isSaved {
+                self.recipes[index].isSaved = true
+                RecipeStorage.addRecipe(recipe: recipes, forKey: "SAVED_RECIPES_KEY")
+                self.recipes.append(self.recipes[index])
+            } else {
+                RecipeStorage.removeRecipe(recipes, forKey: "SAVED_RECIPES_KEY")
+
+                self.recipes[index].isSaved = false
+                if let savedIndex = self.recipes.firstIndex(where: { $0.id == recipes.id }) {
+                    self.recipes.remove(at: savedIndex)
+                }
+            }
         }
-        collectionViewField.reloadData()
     }
 
     @IBAction func saveItem(_ sender: UIButton) {
@@ -85,6 +100,7 @@ class SavedViewController: UIViewController, UICollectionViewDelegate, UICollect
         if let indexPath = collectionViewField.indexPathForItem(at: buttonPosition) {
             let recipe = recipes[indexPath.row]
             didTapSaveButton(recipes: recipe)
+            collectionViewField.reloadData()
         }
     }
 }

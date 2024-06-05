@@ -7,31 +7,31 @@
 
 import UIKit
 
-struct Equipment: Decodable {
+struct Equipment: Codable {
     var id: Int
     var name: String
     var image: String
 }
 
-struct ShortIngredient: Decodable {
+struct ShortIngredient: Codable {
     var id: Int
     var name: String
     var image: String
 }
 
-struct Step: Decodable {
+struct Step: Codable {
     var number: Int
     var step: String
     var ingredients: [ShortIngredient]
     var equipment: [Equipment]
 }
 
-struct AnalyzedInstructions: Decodable {
+struct AnalyzedInstructions: Codable {
     var name: String?
     var steps: [Step]
 }
 
-class DetailRecipeData: NSObject, Decodable {
+class DetailRecipeData: NSObject, Decodable, Encodable {
     var title: String
     var image: String
     var id: Int
@@ -44,6 +44,7 @@ class DetailRecipeData: NSObject, Decodable {
     var summary: String
     var analyzedInstructions: [AnalyzedInstructions]
     var diets: [String]
+    var isInPlanner: Bool
 
     private enum ShortRecipeKey: String, CodingKey {
         case title
@@ -58,6 +59,7 @@ class DetailRecipeData: NSObject, Decodable {
         case summary
         case analyzedInstructions
         case diets
+        case isInPlanner
     }
 
     required init(from decoder: Decoder) throws {
@@ -75,5 +77,23 @@ class DetailRecipeData: NSObject, Decodable {
         diets = try recipeContainer.decode([String].self, forKey: .diets)
         analyzedInstructions = try recipeContainer.decode([AnalyzedInstructions].self, forKey: .analyzedInstructions)
         extendedIngredients = try recipeContainer.decode([IngredientData].self, forKey: .extendedIngredients)
+        isInPlanner = false
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: ShortRecipeKey.self)
+        try container.encode(title, forKey: .title)
+        try container.encode(id, forKey: .id)
+        try container.encode(image, forKey: .image)
+        try container.encode(vegetarian, forKey: .vegetarian)
+        try container.encode(healthScore, forKey: .healthScore)
+        try container.encode(pricePerServing, forKey: .pricePerServing)
+        try container.encode(readyInMinutes, forKey: .readyInMinutes)
+        try container.encode(servings, forKey: .servings)
+        try container.encode(summary, forKey: .summary)
+        try container.encode(diets, forKey: .diets)
+        try container.encode(analyzedInstructions, forKey: .analyzedInstructions)
+        try container.encode(extendedIngredients, forKey: .extendedIngredients)
+        try container.encode(isInPlanner, forKey: .isInPlanner)
     }
 }

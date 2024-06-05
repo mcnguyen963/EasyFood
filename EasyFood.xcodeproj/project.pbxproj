@@ -32,6 +32,9 @@
 		CBBF43952C02577300435037 /* EasyfoodModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CBBF43932C02577300435037 /* EasyfoodModel.xcdatamodeld */; };
 		CBBF43972C025C0B00435037 /* RecipeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBF43962C025C0B00435037 /* RecipeStorage.swift */; };
 		CBBF43992C026BB700435037 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBF43982C026BB700435037 /* TestViewController.swift */; };
+		CBCD8A8D2C1018DA00221EE9 /* PlannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD8A8C2C1018DA00221EE9 /* PlannerViewController.swift */; };
+		CBCD8A8F2C10194000221EE9 /* PlannerMealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD8A8E2C10194000221EE9 /* PlannerMealViewController.swift */; };
+		CBCD8A912C10196600221EE9 /* PlannerIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD8A902C10196600221EE9 /* PlannerIngredientViewController.swift */; };
 		CBCE32BA2BDB3BFF00B15EEF /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE32B92BDB3BFF00B15EEF /* LogInViewController.swift */; };
 		CBCE32BD2BDB3F1600B15EEF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CBCE32BC2BDB3F1600B15EEF /* FirebaseAuth */; };
 		CBCE32BF2BDB3F1600B15EEF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CBCE32BE2BDB3F1600B15EEF /* FirebaseFirestore */; };
@@ -73,6 +76,9 @@
 		CBBF43942C02577300435037 /* EasyfoodModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EasyfoodModel.xcdatamodel; sourceTree = "<group>"; };
 		CBBF43962C025C0B00435037 /* RecipeStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeStorage.swift; sourceTree = "<group>"; };
 		CBBF43982C026BB700435037 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		CBCD8A8C2C1018DA00221EE9 /* PlannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerViewController.swift; sourceTree = "<group>"; };
+		CBCD8A8E2C10194000221EE9 /* PlannerMealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerMealViewController.swift; sourceTree = "<group>"; };
+		CBCD8A902C10196600221EE9 /* PlannerIngredientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerIngredientViewController.swift; sourceTree = "<group>"; };
 		CBCE32B92BDB3BFF00B15EEF /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		CBCE32C22BDB412600B15EEF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CBCE32C42BDB546800B15EEF /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +110,7 @@
 		CB300AC32BF458BB001B6A72 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CBCD8A8B2C1018BF00221EE9 /* Planner */,
 				CB8A31952C038DA500BCBF69 /* Saved */,
 				CB300ACD2BF63C7A001B6A72 /* Detail */,
 				CB300AC82BF46671001B6A72 /* Search */,
@@ -175,6 +182,16 @@
 				CBBF43932C02577300435037 /* EasyfoodModel.xcdatamodeld */,
 			);
 			path = DataModel;
+			sourceTree = "<group>";
+		};
+		CBCD8A8B2C1018BF00221EE9 /* Planner */ = {
+			isa = PBXGroup;
+			children = (
+				CBCD8A8C2C1018DA00221EE9 /* PlannerViewController.swift */,
+				CBCD8A8E2C10194000221EE9 /* PlannerMealViewController.swift */,
+				CBCD8A902C10196600221EE9 /* PlannerIngredientViewController.swift */,
+			);
+			path = Planner;
 			sourceTree = "<group>";
 		};
 		CBDD9E952BA7EA14001AFC33 = {
@@ -300,7 +317,9 @@
 				CB300ACF2BF63CA2001B6A72 /* DetailViewController.swift in Sources */,
 				CB300ACC2BF46728001B6A72 /* SearchCollectionViewCell.swift in Sources */,
 				CB34B0992BDB59110059A17E /* DatabaseProtocol.swift in Sources */,
+				CBCD8A912C10196600221EE9 /* PlannerIngredientViewController.swift in Sources */,
 				CB3C127C2C0CA928002DC5FB /* ChartUIView.swift in Sources */,
+				CBCD8A8D2C1018DA00221EE9 /* PlannerViewController.swift in Sources */,
 				CB300AC72BF45A38001B6A72 /* HomepageCollectionViewCell.swift in Sources */,
 				CB3C127A2C0CA43F002DC5FB /* NuitritionViewController.swift in Sources */,
 				CB7F25FC2BEDA4C400700F35 /* ShortRecipeData.swift in Sources */,
@@ -318,6 +337,7 @@
 				CB3C12782C0CA0C1002DC5FB /* NutritionDetail.swift in Sources */,
 				CBBF43952C02577300435037 /* EasyfoodModel.xcdatamodeld in Sources */,
 				CBDD9EA42BA7EA14001AFC33 /* SceneDelegate.swift in Sources */,
+				CBCD8A8F2C10194000221EE9 /* PlannerMealViewController.swift in Sources */,
 				CB7F26042BF0484300700F35 /* DetailRecipeData.swift in Sources */,
 				CBCE32C52BDB546800B15EEF /* RegisterViewController.swift in Sources */,
 				CBCE32BA2BDB3BFF00B15EEF /* LogInViewController.swift in Sources */,

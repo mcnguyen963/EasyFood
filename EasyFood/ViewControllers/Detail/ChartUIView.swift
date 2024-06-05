@@ -36,7 +36,7 @@ struct ChartUIView: View {
                             Text(nutrient.name)
                                 .font(.headline)
                             Text("Amount: \(nutrient.amount) \(nutrient.unit)")
-                            Text("Percent of Daily Needs: \(nutrient.percentOfDailyNeeds)")
+                            Text("Percent of Daily Needs: \(nutrient.percentOfDailyNeeds)%")
                         }
                     }
                 case 1:
