@@ -2,22 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CLIENT_ID</key>
-	<string>599469910773-othd6fm1qeb5h6mr6ho5sinjuf1ll3m3.apps.googleusercontent.com</string>
-	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.599469910773-othd6fm1qeb5h6mr6ho5sinjuf1ll3m3</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBb0w7PyUY2zOkeHN_Oh5cFE-oXN1DxzAQ</string>
+	<string>AIzaSyDE6TRq_1txBw5ovszUdNQrG-ubK4Kb6Wo</string>
 	<key>GCM_SENDER_ID</key>
-	<string>599469910773</string>
+	<string>251403132269</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>NickNguyen.EasyFood</string>
 	<key>PROJECT_ID</key>
-	<string>easyfood-17257</string>
+	<string>easyfood-7a94f</string>
 	<key>STORAGE_BUCKET</key>
-	<string>easyfood-17257.appspot.com</string>
+	<string>easyfood-7a94f.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:599469910773:ios:2b427106c6397a6b1df3bc</string>
+	<string>1:251403132269:ios:29c7f7356428ddceb44e64</string>
 </dict>
 </plist>
