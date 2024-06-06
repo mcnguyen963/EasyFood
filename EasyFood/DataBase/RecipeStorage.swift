@@ -5,8 +5,13 @@
 //  Created by Nick Nguyen on 26/5/2024.
 //
 
+import Firebase
+import FirebaseFirestoreSwift
 import Foundation
 import UIKit
+
+let DEFAULT_TEAM_NAME = UserDefaults.standard.data(forKey: "userID")
+var listeners = MulticastDelegate<DatabaseListener>()
 
 class RecipeStorage: NSObject {
     static func saveRecipes(_ recipes: [ShortRecipeData], forKey key: String) {
@@ -184,5 +189,104 @@ class RecipeStorage: NSObject {
             }
         }
         return false
+    }
+
+    static func saveUserInformationToFirebase(userId: String, userInfo: [String: Any], plannedRecipes: [DetailRecipeData], savedRecipes: [ShortRecipeData]) {
+        let db = Firestore.firestore()
+
+        // Save user information
+        db.collection("users").document(userId).setData(userInfo) { error in
+            if let error = error {
+                print("Error saving user information: \(error)")
+            } else {
+                print("User information successfully saved!")
+            }
+        }
+
+        // Save planned recipes
+        for recipe in plannedRecipes {
+            do {
+                try db.collection("users").document(userId).collection("plannedRecipes").addDocument(from: recipe)
+            } catch {
+                print("Error saving planned recipe: \(error)")
+            }
+        }
+
+        // Save saved recipes
+        for recipe in savedRecipes {
+            do {
+                try db.collection("users").document(userId).collection("savedRecipes").addDocument(from: recipe)
+            } catch {
+                print("Error saving saved recipe: \(error)")
+            }
+        }
+    }
+
+    static func loadPlannedRecipesFromFirebase(userId: String, completion: @escaping ([DetailRecipeData]?, Error?) -> Void) {
+        let db = Firestore.firestore()
+
+        db.collection("users").document(userId).collection("plannedRecipes").getDocuments { querySnapshot, error in
+            if let querySnapshot = querySnapshot {
+                do {
+                    let recipes = try querySnapshot.documents.compactMap { try $0.data(as: DetailRecipeData.self) }
+                    completion(recipes, nil)
+                } catch {
+                    completion(nil, error)
+                }
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+
+    static func loadSavedRecipesFromFirebase(userId: String, completion: @escaping ([ShortRecipeData]?, Error?) -> Void) {
+        let db = Firestore.firestore()
+
+        db.collection("users").document(userId).collection("savedRecipes").getDocuments { querySnapshot, error in
+            if let querySnapshot = querySnapshot {
+                do {
+                    let recipes = try querySnapshot.documents.compactMap { try $0.data(as: ShortRecipeData.self) }
+                    completion(recipes, nil)
+                } catch {
+                    completion(nil, error)
+                }
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+
+    static func saveUserInformationToFirebase(userId: String, plannedRecipes: [DetailRecipeData], savedRecipes: [ShortRecipeData]) {
+        let db = Firestore.firestore()
+
+        for recipe in plannedRecipes {
+            do {
+                try db.collection("users").document(userId).collection("plannedRecipes").addDocument(from: recipe)
+            } catch {
+                print("Error saving planned recipe: \(error)")
+            }
+        }
+
+        // Save saved recipes
+        for recipe in savedRecipes {
+            do {
+                try db.collection("users").document(userId).collection("savedRecipes").addDocument(from: recipe)
+            } catch {
+                print("Error saving saved recipe: \(error)")
+            }
+        }
+    }
+
+    static func storeSearchKeyword(_ keyword: String) {
+        var keywords = UserDefaults.standard.array(forKey: "searchKeywords") as? [String] ?? []
+        keywords.insert(keyword, at: 0)
+        if keywords.count > 3 {
+            keywords = Array(keywords.prefix(3))
+        }
+        UserDefaults.standard.set(keywords, forKey: "searchKeywords")
+    }
+
+    static func getSearchKeywords() -> [String] {
+        UserDefaults.standard.array(forKey: "searchKeywords") as? [String] ?? []
     }
 }
